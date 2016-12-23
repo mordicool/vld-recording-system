@@ -1,0 +1,27 @@
+{
+  "name": "recording-system-yhe",
+  "version": "3.0.0",
+  "description": "Uploads recordings in yhe to file storage",
+  "main": "app.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "commander": "~2.9.0",
+    "express": "~4.13.4",
+    "ffmetadata": "~1.4.0",
+    "formidable": "~1.0.17",
+    "log4js": "~0.6.38",
+    "q": "~1.4.1",
+    "s3fs": "~2.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node.exe cluster.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elyashiv/recordingSystem-yhe.git"
+  },
+  "author": "Mordicool inc.",
+  "license": "ISC",
+  "homepage": "https://github.com/elyashiv/recordingSystem-yhe#readme"
+}

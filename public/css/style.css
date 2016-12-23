@@ -1,0 +1,32 @@
+body {
+    background-color: mintcream;
+}
+
+.my-nav {
+    background-color: #3c763d;
+    padding: .3em;
+}
+
+.file-path {
+    margin-top: 2em;
+}
+
+.upload-btn {
+    margin-top: 2em;
+}
+
+.my-progress-bar {
+    margin: .5em 0 .5em 0;
+}
+
+h3 {
+    margin-bottom: 1em;
+}
+
+.jstree-disabled>.jstree-icon {
+    -webkit-filter: none !important;
+}
+
+.small-margin {
+    margin: .8em 0 .8em 0;
+}

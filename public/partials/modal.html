@@ -1,0 +1,23 @@
+<div class="modal fade" id="uploadingModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">העלאת קבצים</h4>
+            </div>
+            <div class="row my-progress-bar" ng-show="uploadingModalProgress !== '0%'">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                         aria-valuenow="{{uploadingModalProgress}}" aria-valuemin="0" aria-valuemax="100"
+                         style="width: {{uploadingModalProgress}}">
+                        {{uploadingModalProgress}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p ng-cloak class="alert" ng-class="uploadingModalProgress !== '0%' ? 'alert-success' : 'alert-danger'">
+                    {{uploadingModalText}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
