@@ -6,7 +6,7 @@ var configuration = {
     server: {
         port: 8000
     },
-    uploadsFolder: '\\..\\5777',
+    uploadsFolder: "C:\\Users\\מרדכי\\Git Projects\\מערכת הקלטות\\ותורתך לדור דורים\\5777",
     logger: {
         infoLogFileName: 'logs/infoLog.log',
         debugLogFileName: 'logs/debugLog.log'
@@ -22,6 +22,9 @@ var configuration = {
         secretAccessKey: '***',
         region: 'eu-central-1',
         prefix: '5777/'
+    },
+    removeFile: {
+        applyModule: true
     }
 };
 

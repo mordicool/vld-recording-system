@@ -1,13 +1,13 @@
 
-Recording System Yhe
+Recording System
 
 -------------------------------------------------------------------
 *******************************************************************
 -------------------------------------------------------------------
 
-This is a system which uploads class recordings from the browser into a public storage share.
+This is a system which uploads recordings into a public storage share.
 
-Developed by yeshivat Har Etion students for the yeshiva needs.
+Developed by Mordicool for the yeshiva needs.
 
 Use it!
 

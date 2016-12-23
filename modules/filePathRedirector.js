@@ -17,7 +17,7 @@ function redirectFilePath(file) {
             logger.debug('File path redirected successfully. file: ' + redirectedPath);
             deferred.resolve(redirectedPath);
         })
-        .fail(function(error) {
+        .fail(function (error) {
             logger.debug('File path is not redirected, do not now why..');
             deferred.reject(error);
         });

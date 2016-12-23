@@ -2,7 +2,12 @@
  * Created by מרדכי on 29 יוני 2016.
  */
 
-app.controller('recordingSystemController', ['$scope', 'uploadFileService', 'recordingPackageBuilderService', 'config', function ($scope, uploadFileService, recordingPackageBuilderService, config) {
+app.controller('recordingSystemController', [
+    '$scope',
+    'uploadFileService',
+    'recordingPackageBuilderService',
+    'config',
+    function ($scope, uploadFileService, recordingPackageBuilderService, config) {
     $scope.homeWelcomeSentence = config.strings.homeWelcomeSentence;
     $scope.lecturers = config.lecturers.sort();
     $scope.recordingLecturer = 'אחר';

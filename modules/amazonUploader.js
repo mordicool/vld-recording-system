@@ -14,7 +14,7 @@ function upload(filePath) {
 
     if (config.uploadToAmazon.applyModule == false) {
         logger.debug('Uploading to amazon did not occur, do to false configuration.');
-        deferred.resolve();
+        deferred.resolve(filePath);
     } else {
         var fileStream = fs.createReadStream(filePath);
         var fileDirectory = filePath.slice(filePath.indexOf(config.uploadsFolder) + config.uploadsFolder.length);
@@ -23,7 +23,7 @@ function upload(filePath) {
         s3fsImplementation.writeFile(uploadUrl, fileStream)
             .then(function () {
                 logger.debug('Uploading to amazon finished successfully. upload url: ' + uploadUrl);
-                deferred.resolve();
+                deferred.resolve(filePath);
             });
     }
 
