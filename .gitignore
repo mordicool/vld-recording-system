@@ -1,5 +1,8 @@
-logs/
-node_modules/
+logs
 *.bat
-5777/
-.idea/
+5777
+.idea
+
+# Node build artifacts
+node_modules
+npm-debug.log

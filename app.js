@@ -7,14 +7,11 @@ var logger = require('./modules/logger');
 var router = require('./router');
 var express = require('express');
 
-module.exports.execute = function () {
+var app = express();
+app.use(express.static(__dirname + '/public'));
+app.use(router);
 
-    var app = express();
-    app.use(express.static('public'));
-    app.use(router);
-
-    app.listen(config.server.port, function () {
-        logger.info('Server is listening on port ' + config.server.port);
-    });
-
-};
+var port = process.env.PORT || config.server.port;
+app.listen(port, '0.0.0.0', function () {
+    logger.info('Server is listening on port ' + port);
+});
