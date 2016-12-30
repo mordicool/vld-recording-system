@@ -17,19 +17,19 @@ var configuration = {
         debugLogFileName: 'logs/debugLog.log'
     },
     metadata: {
-        applyModule: false,
+        applyModule: true,
         minimumTrackNumber: 1,
         currentYear: '5777'
     },
     uploadToAmazon: {
-        applyModule: false,
-        accessKeyId: '***',
-        secretAccessKey: '***',
+        applyModule: true,
+        accessKeyId: 'AKIAJZF3ILQX7BDJTBOQ',
+        secretAccessKey: '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',
         region: 'eu-central-1',
         prefix: '5777/'
     },
     removeFile: {
-        applyModule: false
+        applyModule: true
     }
 };
 
