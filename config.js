@@ -6,6 +6,11 @@ var configuration = {
     server: {
         port: 8000
     },
+    authentication: {
+        password: 'aaa',
+        cookieValue: 'qwe123qwe',
+        cookieMaxAge: 5 * 60 * 1000 // 5 minutes
+    },
     uploadsFolder: "5777",
     logger: {
         infoLogFileName: 'logs/infoLog.log',
