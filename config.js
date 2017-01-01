@@ -23,6 +23,7 @@ var configuration = {
     },
     uploadToAmazon: {
         applyModule: true,
+        bucketName: 'vbmaudio',
         accessKeyId: 'AKIAJZF3ILQX7BDJTBOQ',
         secretAccessKey: '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',
         region: 'eu-central-1',

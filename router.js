@@ -37,6 +37,7 @@ function tryLogin(req, res) {
 
 function uploadFile(req, res) {
     if (req.cookies.password !== config.authentication.cookieValue) {
+        logger.warn('Did not upload the file do to non authenticated user. redirected to login page.');
         res.sendFile(__dirname + '/public/pages/login.html');
     } else {
         q.fcall(fileHandler.handleFile, req)

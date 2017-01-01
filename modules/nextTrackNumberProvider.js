@@ -4,36 +4,28 @@
 
 var config = require('../config');
 var fs = require('fs');
-var q = require('q');
 var ffmetadata = require('ffmetadata');
+var q = require('q');
+var s3fsImplementation = require('./s3fsImplementation');
 
 function getNextTrackNumberInFolder(folderName, filename) {
     var deferred = q.defer();
 
-    var files = fs.readdirSync(folderName);
-    var maxTrackNumber = config.metadata.minimumTrackNumber;
-    if (files.length === 0) {
-        deferred.resolve(formatTrackNumber(maxTrackNumber));
-    }
-    var index = 0;
-    for (var i = 0; i < files.length; i++) {
-        (function (file) {
-            ffmetadata.read(folderName + '/' + file, function (error, data) {
-                if (error) {
-                    deferred.reject(error);
-                } else {
-                    var currentTrackNumber = parseInt(data.track);
-                    if (maxTrackNumber <= currentTrackNumber && file !== filename) {
-                        maxTrackNumber = currentTrackNumber + 1;
-                    }
-
-                    if (index++ === files.length - 1) {
-                        deferred.resolve(formatTrackNumber(maxTrackNumber));
-                    }
+    s3fsImplementation.readdir(folderName, function (error, files) {
+        var maxTrackNumber = config.metadata.minimumTrackNumber;
+        if (files.length === 0) {
+            deferred.resolve(formatTrackNumber(maxTrackNumber));
+        } else {
+            for (var i = 0; i < files.length; i++) {
+                if (files[i] == filename) continue;
+                var currentTrackNumber = Number.parseInt(files[i].split('.')[0]);
+                if (currentTrackNumber > maxTrackNumber) {
+                    maxTrackNumber = currentTrackNumber;
                 }
-            });
-        }) (files[i]);
-    }
+            }
+            deferred.resolve(formatTrackNumber(maxTrackNumber + 1));
+        }
+    });
 
     return deferred.promise;
 }
@@ -46,4 +38,6 @@ function formatTrackNumber(trackNumber) {
     }
 }
 
-module.exports.getNextTrackNumberInFolder = getNextTrackNumberInFolder;
+module.exports = {
+    getNextTrackNumberInFolder: getNextTrackNumberInFolder
+};

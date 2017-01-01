@@ -5,7 +5,7 @@
 var config = require('../config');
 var S3FS = require('s3fs');
 
-var s3fsImplementation = new S3FS('vbmaudio', {
+var s3fsImplementation = new S3FS(config.uploadToAmazon.bucketName, {
     accessKeyId: config.uploadToAmazon.accessKeyId,
     secretAccessKey: config.uploadToAmazon.secretAccessKey,
     region: config.uploadToAmazon.region
