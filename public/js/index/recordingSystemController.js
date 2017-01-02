@@ -4,13 +4,16 @@
 
 app.controller('recordingSystemController', [
     '$scope',
+    '$http',
     'uploadFileService',
     'recordingPackageBuilderService',
     'config',
-    function ($scope, uploadFileService, recordingPackageBuilderService, config) {
+    function ($scope, $http, uploadFileService, recordingPackageBuilderService, config) {
     $scope.homeWelcomeSentence = config.strings.homeWelcomeSentence;
-    $scope.lecturers = config.lecturers.sort();
-    $scope.recordingLecturer = 'אחר';
+    $http.get('data/lecturers.json').then(function (response) {
+        $scope.lecturers = response.data.lecturers.sort();
+        $scope.recordingLecturer = 'אחר';
+    });
     $scope.chooseFolderText = config.strings.chooseFolderText;
     $scope.uploadingModalProgress = '0%';
 

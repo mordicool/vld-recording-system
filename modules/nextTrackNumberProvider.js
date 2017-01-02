@@ -13,7 +13,7 @@ function getNextTrackNumberInFolder(folderName, filename) {
 
     s3fsImplementation.readdir(folderName, function (error, files) {
         var maxTrackNumber = config.metadata.minimumTrackNumber;
-        if (files.length === 0) {
+        if (!files || files.length === 0) {
             deferred.resolve(formatTrackNumber(maxTrackNumber));
         } else {
             for (var i = 0; i < files.length; i++) {

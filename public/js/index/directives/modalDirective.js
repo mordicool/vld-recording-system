@@ -5,7 +5,7 @@
 app.directive('modal', function () {
     return {
         restrict: 'E',
-        templateUrl: '../partials/modal.html',
+        templateUrl: 'js/index/directives/modalPartial.html',
         scope: false,
         controller: ['$scope', 'config', function ($scope, config) {
             $("#uploadingModal").on("hidden.bs.modal", function () {

@@ -8,6 +8,7 @@ $(function () { $('#jstree').jstree({
         "wholerow"
     ],
     'core': {
+        'check_callback': true,
         'multiple': false,
         'themes': {
             'stripes': true,

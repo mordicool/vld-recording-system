@@ -7,9 +7,16 @@ var configuration = {
         port: 8000
     },
     authentication: {
-        password: 'abcdefgm',
-        cookieValue: 'qwe123qwe',
-        cookieMaxAge: 5 * 60 * 1000 // 5 minutes
+        regularUser: {
+            password: 'abcdefgm',
+            cookieValue: 'qwe123qwe',
+            cookieMaxAge: 5 * 60 * 1000 // 5 minutes
+        },
+        adminUser: {
+            password: 'abcdefgmAdmin',
+            cookieValue: 'qwe123qweAdmin',
+            cookieMaxAge: 10 * 60 * 1000 // 5 minutes
+        }
     },
     uploadsFolder: "5777",
     logger: {
@@ -22,7 +29,7 @@ var configuration = {
         currentYear: '5777'
     },
     uploadToAmazon: {
-        applyModule: true,
+        applyModule: false,
         bucketName: 'vbmaudio',
         accessKeyId: 'AKIAJZF3ILQX7BDJTBOQ',
         secretAccessKey: '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',
@@ -30,7 +37,7 @@ var configuration = {
         prefix: '5777/'
     },
     removeFile: {
-        applyModule: true
+        applyModule: false
     }
 };
 

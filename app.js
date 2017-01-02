@@ -5,13 +5,13 @@
 var config = require('./config');
 var cookieParser = require('cookie-parser');
 var logger = require('./modules/logger');
-var router = require('./router');
+var router = require('./routes');
 var express = require('express');
 
 var app = express();
 app.use(cookieParser('mordicool'));
 app.use(express.static(__dirname + '/public'));
-app.use(router);
+app.use('/', router);
 
 var port = process.env.PORT || config.server.port;
 app.listen(port, '0.0.0.0', function () {

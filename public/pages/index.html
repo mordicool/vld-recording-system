@@ -10,45 +10,26 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css"/>
     <link href="../jsTree/dist/themes/default/style.min.css" rel="stylesheet" type="text/css"/>
 
-    <!-- JQuery -->
-    <script src="../js/Technologies/jquery.min.js" type="application/javascript"></script>
-    <!-- Angular -->
-    <script src="../js/Technologies/angular.min.js" type="application/javascript"></script>
-    <!-- Bootstrap -->
-    <script src="../js/Technologies/bootstrap.min.js" type="application/javascript"></script>
+    <!-- JQuery, AngularJs, Bootstrap -->
+    <script src="../js/technologies/jquery.min.js" type="application/javascript"></script>
+    <script src="../js/technologies/angular.min.js" type="application/javascript"></script>
+    <script src="../js/technologies/bootstrap.min.js" type="application/javascript"></script>
     <!-- JsTree -->
     <script src="../jsTree/dist/jstree.min.js" type="application/javascript"></script>
-    <script src="../js/JsTree/jstreeManagment.js" type="application/javascript"></script>
+    <script src="../js/index/jstreeManagment.js" type="application/javascript"></script>
     <!-- My App -->
-    <script src="../js/app.js" type="application/javascript"></script>
-    <script src="../js/clientConfig.js" type="application/javascript"></script>
-    <script src="../js/Services/uploadFileService.js" type="application/javascript"></script>
-    <script src="../js/Services/recordingPackageBuilderService.js" type="application/javascript"></script>
-    <script src="../js/Directives/jstreeDirective.js" type="application/javascript"></script>
-    <script src="../js/Directives/uploadFileDirective.js" type="application/javascript"></script>
-    <script src="../js/Directives/modalDirective.js" type="application/javascript"></script>
-    <script src="../js/Controllers/recordingSystemController.js" type="application/javascript"></script>
+    <script src="../js/index/app.js" type="application/javascript"></script>
+    <script src="../js/index/clientConfig.js" type="application/javascript"></script>
+    <script src="../js/index/services/uploadFileService.js" type="application/javascript"></script>
+    <script src="../js/index/services/recordingPackageBuilderService.js" type="application/javascript"></script>
+    <script src="../js/sharedDirectives/navbarDirective.js" type="application/javascript"></script>
+    <script src="../js/index/directives/jstreeDirective.js" type="application/javascript"></script>
+    <script src="../js/index/directives/uploadFileDirective.js" type="application/javascript"></script>
+    <script src="../js/index/directives/modalDirective.js" type="application/javascript"></script>
+    <script src="../js/index/recordingSystemController.js" type="application/javascript"></script>
 </head>
 <body ng-app="recordingSystemApp">
-<nav>
-    <nav class="navbar navbar-default my-nav">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-collapse"
-                        aria-expanded="false">
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img alt="Brand" src="../images/logo.png">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="my-navbar-collapse">
-                <ul class="nav navbar-nav pull-left">
-                </ul>
-            </div>
-        </div>
-    </nav>
-</nav>
+<vld-navbar></vld-navbar>
 <main ng-controller="recordingSystemController">
     <div class="container-fluid" ng-cloak="true">
         <header>
