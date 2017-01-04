@@ -30,3 +30,12 @@ h3 {
 .small-margin {
     margin: .8em 0 .8em 0;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.admin-body-scroll {
+    overflow-y: auto;
+    height: 65vh;
+}

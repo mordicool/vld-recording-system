@@ -8,13 +8,11 @@ var configuration = {
     },
     authentication: {
         regularUser: {
-            password: 'abcdefgm',
-            cookieValue: 'qwe123qwe',
+            cookieValue: '8]E/1c{j)>4,c7N',
             cookieMaxAge: 5 * 60 * 1000 // 5 minutes
         },
         adminUser: {
-            password: 'abcdefgmAdmin',
-            cookieValue: 'qwe123qweAdmin',
+            cookieValue: '19{:}$2&:{ Ft4n',
             cookieMaxAge: 10 * 60 * 1000 // 5 minutes
         }
     },

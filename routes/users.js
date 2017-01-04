@@ -4,6 +4,7 @@
 
 var config = require('../config');
 var express = require('express');
+var passwords = require('../data/passwords.json');
 var q = require('q');
 var router = express.Router();
 
@@ -16,10 +17,10 @@ module.exports = router;
 
 function login(req, res) {
     var password = req.query.password;
-    if (password == config.authentication.adminUser.password && !req.cookies.password) {
+    if (password == passwords.adminPassword && !req.cookies.password) {
         res.cookie('password', config.authentication.adminUser.cookieValue, {maxAge: config.authentication.adminUser.cookieMaxAge})
             .sendStatus(200);
-    } else if(password == config.authentication.regularUser.password && !req.cookies.password) {
+    } else if(password == passwords.userPassword && !req.cookies.password) {
         res.cookie('password', config.authentication.regularUser.cookieValue, {maxAge: config.authentication.regularUser.cookieMaxAge})
             .sendStatus(200);
     } else {

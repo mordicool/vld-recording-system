@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    <div class="panel-heading">ניהול מעבירי שיעורים</div>
+    <div class="panel-body">
+        <div class="input-group">
+            <span class="input-group-addon">שם מעביר</span>
+            <input type="text" class="form-control" ng-model="newLecturer" ng-keyup="$event.keyCode == 13 && addNewLecturer()">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" ng-click="addNewLecturer()"><span class="glyphicon glyphicon-plus"></span></button>
+                        </span>
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" ng-click="removeLecturer()"><span class="glyphicon glyphicon-minus"></span></button>
+                        </span>
+        </div>
+        <div class="input-group" style="margin-top: .8em;">
+            <label class="input-group-addon" for="recordingLecturer">רשימת מעבירים נוכחית</label>
+            <select class="form-control" id="recordingLecturer" name="recordingLecturer" ng-model="recordingLecturer">
+                <option class="text-center" ng-repeat="lecturer in lecturers track by $index" ng-cloak>{{lecturer}}</option>
+            </select>
+        </div>
+        <div class="alert alert-danger" style="margin-top: .7em" ng-show="isError" role="alert">{{errorMessage}}</div>
+    </div>
+</div>
