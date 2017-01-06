@@ -39,3 +39,19 @@ h3 {
     overflow-y: auto;
     height: 65vh;
 }
+
+.panel {
+    background-color: rgba(223, 229, 201, 0.35) !important;
+}
+
+.rounded-input {
+    border-radius: 3em !important;
+}
+
+.my-success-color {
+    background-color: #74df76 !important;
+}
+
+.my-danger-color {
+    background-color: #e19896 !important;
+}

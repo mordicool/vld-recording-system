@@ -26,7 +26,7 @@ function changeAdminPassword(req, res) {
 
 function changePasswordByUserType(req, res, userType) {
     if (req.cookies.password !== config.authentication.adminUser.cookieValue) {
-        logger.warn('Did not change user password, do to non authenticated user. redirected to login page.');
+        logger.warn('Did not change ' + userType + ' password, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {
         var newPassword = req.query.newPassword;
@@ -41,7 +41,7 @@ function changePasswordByUserType(req, res, userType) {
             var stringData = JSON.stringify(passwords);
             fs.writeFileSync(path.join(__dirname, '../../data/passwords.json'), stringData);
 
-            logger.info('Changed user password successfully; New password: ' + newPassword);
+            logger.info('Changed ' + userType + ' password successfully; New password: ' + newPassword);
             res.sendStatus(200);
         }
     }

@@ -13,7 +13,7 @@ var configuration = {
         },
         adminUser: {
             cookieValue: '19{:}$2&:{ Ft4n',
-            cookieMaxAge: 10 * 60 * 1000 // 5 minutes
+            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         }
     },
     uploadsFolder: "5777",

@@ -34,7 +34,7 @@ app.controller('recordingSystemController', [
     function validateRecording() {
         if(!$scope.recording || !$scope.recordingSubject) {
             $scope.uploadingModalText = config.strings.badRecordInfoText;
-        } else if(!$scope.pathResult || $scope.pathResult == '/false') {
+        } else if(!$scope.pathResult || $scope.pathResult == 'לא נבחרה תקייה') {
             $scope.uploadingModalText = config.strings.noPathEntered;
         } else {
             return true;

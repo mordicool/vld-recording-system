@@ -2,6 +2,7 @@
  * Created by מרדכי on 29 יוני 2016.
  */
 
+var bodyParser = require('body-parser');
 var config = require('./config');
 var cookieParser = require('cookie-parser');
 var logger = require('./modules/logger');
@@ -10,6 +11,7 @@ var express = require('express');
 
 var app = express();
 app.use(cookieParser('mordicool'));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.use('/', router);
 
