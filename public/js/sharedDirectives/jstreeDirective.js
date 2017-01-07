@@ -17,7 +17,7 @@ app.directive('jstree', function () {
 
             $tree.on('changed.jstree', function (e, data) {
                 var $tree = $('#jstree');
-                $scope.pathResult = "/" + $tree.jstree().get_path(data.node, "/");
+                $scope.pathResult = $tree.jstree().get_path(data.node, "/");
                 localStorage.setItem('selectedNodeId', data.node.id);
                 disableNonLeaf();
                 $scope.$apply();
@@ -46,7 +46,7 @@ app.directive('jstree', function () {
                 tree.select_node(selectedNodeId, true, false);
                 var oldPath = tree.get_path(selectedNodeId, "/");
                 if (!oldPath) return;
-                $scope.pathResult = "/" + tree.get_path(selectedNodeId, "/");
+                $scope.pathResult = tree.get_path(selectedNodeId, "/");
 
                 $scope.$apply();
             }

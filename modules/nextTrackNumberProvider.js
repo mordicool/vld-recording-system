@@ -3,14 +3,13 @@
  */
 
 var config = require('../config');
-var fs = require('fs');
-var ffmetadata = require('ffmetadata');
 var q = require('q');
 var s3fsImplementation = require('./s3fsImplementation');
 
 function getNextTrackNumberInFolder(folderName, filename) {
     var deferred = q.defer();
 
+    folderName = config.uploadToAmazon.prefix + folderName;
     s3fsImplementation.readdir(folderName, function (error, files) {
         var maxTrackNumber = config.metadata.minimumTrackNumber;
         if (!files || files.length === 0) {

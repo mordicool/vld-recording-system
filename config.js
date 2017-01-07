@@ -16,7 +16,7 @@ var configuration = {
             cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         }
     },
-    uploadsFolder: "5777",
+    uploadsFolder: "uploads/",
     logger: {
         infoLogFileName: 'logs/infoLog.log',
         debugLogFileName: 'logs/debugLog.log'
@@ -27,7 +27,7 @@ var configuration = {
         currentYear: '5777'
     },
     uploadToAmazon: {
-        applyModule: false,
+        applyModule: true,
         bucketName: 'vbmaudio',
         accessKeyId: 'AKIAJZF3ILQX7BDJTBOQ',
         secretAccessKey: '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',
@@ -35,7 +35,7 @@ var configuration = {
         prefix: '5777/'
     },
     removeFile: {
-        applyModule: false
+        applyModule: true
     }
 };
 

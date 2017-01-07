@@ -18,7 +18,7 @@ function upload(filePath) {
     } else {
         var fileStream = fs.createReadStream(filePath);
         var fileDirectory = filePath.slice(filePath.indexOf(config.uploadsFolder) + config.uploadsFolder.length);
-        var uploadUrl = config.uploadToAmazon.prefix + fileDirectory;
+        var uploadUrl = config.uploadToAmazon.prefix + fileDirectory.split('-').join('/');
 
         s3fsImplementation.writeFile(uploadUrl, fileStream)
             .then(function () {

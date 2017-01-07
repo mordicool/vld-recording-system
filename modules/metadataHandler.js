@@ -20,9 +20,12 @@ function addMetadataToFile(file, filePath) {
         var recordingInfo = JSON.parse(file.name);
         var extensionName = path.extname(filePath).toLowerCase();
 
-        nextTrackNumberProvider.getNextTrackNumberInFolder(path.dirname(filePath), path.basename(filePath))
+        var fileDirectory = filePath.slice(filePath.indexOf(config.uploadsFolder) + config.uploadsFolder.length);
+        var realFilePath = fileDirectory.split('-').join('/');
+
+        nextTrackNumberProvider.getNextTrackNumberInFolder(path.dirname(realFilePath), path.basename(realFilePath))
             .then(function (trackNumber) {
-                var newFilePath = path.dirname(filePath) + '/' + trackNumber + '. ' + path.basename(filePath);
+                var newFilePath = path.dirname(filePath) + '/' + path.dirname(realFilePath).split('/').join('-') + '-' + trackNumber + '. ' + path.basename(realFilePath);
                 fs.renameSync(filePath, newFilePath);
                 filePath = newFilePath;
 
@@ -37,7 +40,7 @@ function addMetadataToFile(file, filePath) {
                         artist: recordingInfo.lecturer,
                         track: trackNumber,
                         date: config.metadata.currentYear,
-                        album: path.dirname(filePath).split('/').pop()
+                        album: path.dirname(realFilePath).split('/').pop()
                     };
                     var options = {
                         "id3v2.3": true

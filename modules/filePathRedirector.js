@@ -29,7 +29,7 @@ function getRedirectedFilePath(file) {
     var deferred = q.defer();
 
     var RecordingInfo = JSON.parse(file.name);
-    var filePath = config.uploadsFolder + RecordingInfo.path + '/' + RecordingInfo.subject;
+    var filePath = config.uploadsFolder + RecordingInfo.path.split('/').join('-') + '-' + RecordingInfo.subject;
     fs.stat(filePath + RecordingInfo.fileExtension, function (err, stat) {
         if (err == null) { // File exists already! Adding a random number to the file name to avoid conflict.
             filePath += randomNumberGenerator.generateRandomNumber();
