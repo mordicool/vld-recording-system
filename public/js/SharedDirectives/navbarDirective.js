@@ -7,7 +7,9 @@ app.directive('vldNavbar', function () {
         restrict: 'E',
         templateUrl: 'js/sharedDirectives/navbarPartial.html',
         scope: {
-            isLogout: '@'
+            isLogout: '@',
+            isRecordingsView: '@',
+            isUpload: '@'
         }
     };
 });

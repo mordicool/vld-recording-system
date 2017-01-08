@@ -2,18 +2,20 @@
  * Created by מרדכי on 09 אוגוסט 2016.
  */
 
+var adminRoute = require('./admin');
 var config = require('../config');
 var express = require('express');
 var path = require('path');
 var router = express.Router();
+var recordingsViewRoute = require('./recordingsView');
 var uploadRoute = require('./upload');
 var usersRoute = require('./users');
-var adminRoute = require('./admin');
 
 router.get('/', serveIndexPage);
+router.use('/admin', adminRoute);
+router.use('/recordingsView', recordingsViewRoute);
 router.use('/upload', uploadRoute);
 router.use('/users', usersRoute);
-router.use('/admin', adminRoute);
 
 module.exports = router;
 

@@ -20,40 +20,46 @@ app.controller('lecturers', ['$scope', '$http', function ($scope, $http) {
 
     $scope.addNewLecturer = function () {
         var newLecturer = $scope.newLecturer;
-        if ($scope.lecturers.indexOf(newLecturer) !== -1) {
+        if (newLecturer == '') {
+            $scope.isError = true;
+            $scope.errorMessage = 'שם מעביר השיעור ריק';
+        } else if ($scope.lecturers.indexOf(newLecturer) !== -1) {
             $scope.isError = true;
             $scope.errorMessage = 'שם מעביר השיעור כבר קיים';
-            return;
+        } else {
+            $http.get('admin/lecturers/add?newLecturer=' + newLecturer).then(function (response) {
+                if (response.status == 200) {
+                    alert('מעביר השיעור נוסף בהצלחה');
+                    location.reload();
+                }
+            }, function (response) {
+                if (response.status == 400) {
+                    alert('שגיאה! מעביר השיעור לא נוסף.');
+                    location.reload();
+                }
+            });
         }
-        $http.get('admin/lecturers/add?newLecturer=' + newLecturer).then(function (response) {
-            if (response.status == 200) {
-                alert('מעביר השיעור נוסף בהצלחה');
-                location.reload();
-            }
-        }, function (response) {
-            if (response.status == 400) {
-                alert('שגיאה! מעביר השיעור לא נוסף.');
-                location.reload();
-            }
-        });
     };
     $scope.removeLecturer = function () {
         var newLecturer = $scope.newLecturer;
-        if ($scope.lecturers.indexOf(newLecturer) == -1) {
+        if (newLecturer == '') {
+            $scope.isError = true;
+            $scope.errorMessage = 'שם מעביר השיעור ריק';
+        } else if ($scope.lecturers.indexOf(newLecturer) == -1) {
             $scope.isError = true;
             $scope.errorMessage = 'שם מעביר השיעור לא קיים';
-            return;
+        } else {
+            $http.get('admin/lecturers/remove?newLecturer=' + newLecturer).then(function (response) {
+                if (response.status == 200) {
+                    alert('מעביר השיעור הוסר בהצלחה');
+                    location.reload();
+                }
+            }, function (response) {
+                if (response.status == 400) {
+                    alert('שגיאה! מעביר השיעור לא הוסר.');
+                    location.reload();
+                }
+            });
         }
-        $http.get('admin/lecturers/remove?newLecturer=' + newLecturer).then(function (response) {
-            if (response.status == 200) {
-                alert('מעביר השיעור הוסר בהצלחה');
-                location.reload();
-            }
-        }, function (response) {
-            if (response.status == 400) {
-                alert('שגיאה! מעביר השיעור לא הוסר.');
-                location.reload();
-            }
-        });
     };
 }]);

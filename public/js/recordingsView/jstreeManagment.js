@@ -19,7 +19,7 @@ $(function () { $('#jstree').jstree({
             'variant': "large"
         },
         'data': {
-            'url': '/data/jsTree.json',
+            'url': '/recordingsView/getTree',
             'dataType': 'json'
         }
     }

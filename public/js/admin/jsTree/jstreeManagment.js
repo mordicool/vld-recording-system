@@ -7,11 +7,15 @@ $(function () {
         $('#jstree').jstree({
             "plugins": [
                 "sort",
+                "state",
                 "wholerow",
                 "contextmenu",
                 "dnd"
             ],
-            'core': {
+            "state": {
+                "key": "selectedNode"
+            },
+            "core": {
                 'check_callback' : true,
                 'multiple': false,
                 'themes': {

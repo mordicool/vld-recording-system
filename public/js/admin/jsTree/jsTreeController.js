@@ -19,6 +19,6 @@ app.controller('jsTree', ['$scope', '$http', function ($scope, $http) {
                 location.reload();
             }
         });
-    }
+    };
 
 }]);

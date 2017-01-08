@@ -22,12 +22,12 @@ var configuration = {
         debugLogFileName: 'logs/debugLog.log'
     },
     metadata: {
-        applyModule: true,
+        applyModule: false,
         minimumTrackNumber: 1,
         currentYear: '5777'
     },
     uploadToAmazon: {
-        applyModule: true,
+        applyModule: false,
         bucketName: 'vbmaudio',
         accessKeyId: 'AKIAJZF3ILQX7BDJTBOQ',
         secretAccessKey: '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',
