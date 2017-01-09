@@ -12,7 +12,6 @@ $(function () { $('#jstree').jstree({
         "key": "selectedNode"
     },
     "core": {
-        'check_callback': true,
         'multiple': false,
         'themes': {
             'stripes': true,

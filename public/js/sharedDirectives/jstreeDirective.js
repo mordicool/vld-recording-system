@@ -16,7 +16,9 @@ app.directive('jstree', function () {
             var $tree = $('#jstree');
             $tree.on('changed.jstree', function (e, data) {
                 disableNonLeaf();
-                $scope.pathResult = data.instance.get_path(data.selected, "/");
+                var path = data.instance.get_path(data.selected, "/");
+                if (!path) return;
+                $scope.pathResult = path;
                 $scope.$apply();
             });
 
