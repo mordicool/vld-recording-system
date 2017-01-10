@@ -2,23 +2,23 @@
  * Created by מרדכי on 28 אוקטובר 2016.
  */
 
-var config = require('../config');
+var config = require('../../config');
 var fs = require('fs');
 var q = require('q');
-var logger = require('./logger');
+var logger = require('./../logger');
 var path = require('path');
-var s3fsImplementation = require('./s3fsImplementation');
+var s3fsImplementation = require('./../s3fsImplementation');
 
 function upload(filePath) {
     var deferred = q.defer();
 
-    if (config.uploadToAmazon.applyModule == false) {
+    if (config.amazonModule.applyModule == false) {
         logger.debug('Uploading to amazon did not occur, do to false configuration.');
         deferred.resolve(filePath);
     } else {
         var fileStream = fs.createReadStream(filePath);
         var fileDirectory = filePath.slice(filePath.indexOf(config.uploadsFolder) + config.uploadsFolder.length);
-        var uploadUrl = config.uploadToAmazon.prefix + fileDirectory.split('-').join('/');
+        var uploadUrl = config.amazonModule.prefix + fileDirectory.split('-').join('/');
 
         s3fsImplementation.writeFile(uploadUrl, fileStream)
             .then(function () {

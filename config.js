@@ -9,28 +9,29 @@ var configuration = {
     authentication: {
         regularUser: {
             cookieValue: '8]E/1c{j)>4,c7N',
-            cookieMaxAge: 5 * 60 * 1000 // 5 minutes
+            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
         adminUser: {
             cookieValue: '19{:}$2&:{ Ft4n',
-            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
+            cookieMaxAge: 30 * 60 * 1000 // 30 minutes
         }
     },
-    uploadsFolder: "uploads/",
+    uploadsFolder: 'uploads/',
+    downloadsFolder: 'downloads/',
     logger: {
         infoLogFileName: 'logs/infoLog.log',
         debugLogFileName: 'logs/debugLog.log'
     },
     metadata: {
-        applyModule: false,
+        applyModule: true,
         minimumTrackNumber: 1,
         currentYear: '5777'
     },
-    uploadToAmazon: {
-        applyModule: false,
-        bucketName: 'vbmaudio',
-        accessKeyId: 'AKIAJZF3ILQX7BDJTBOQ',
-        secretAccessKey: '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',
+    amazonModule: {
+        applyModule: true,
+        bucketName: 'vld-test',
+        accessKeyId: 'AKIAJ4E7K3T5QBMAAPBQ',
+        secretAccessKey: '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',
         region: 'eu-central-1',
         prefix: '5777/'
     },

@@ -2,11 +2,11 @@
  * Created by מרדכי on 01 ספטמבר 2016.
  */
 
-var config = require('../config');
+var config = require('../../config');
 var fs = require('fs');
-var logger = require('./logger');
+var logger = require('./../logger');
 var q = require('q');
-var randomNumberGenerator = require('../modules/randomNumberGenerator');
+var randomNumberGenerator = require('./randomNumberGenerator');
 
 function redirectFilePath(file) {
     var deferred = q.defer();

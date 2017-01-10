@@ -3,10 +3,10 @@
  */
 
 var nextTrackNumberProvider = require('./nextTrackNumberProvider');
-var config = require('../config');
+var config = require('../../config');
 var ffmetadata = require('ffmetadata');
 var fs = require('fs');
-var logger = require('./logger');
+var logger = require('./../logger');
 var path = require('path');
 var q = require('q');
 

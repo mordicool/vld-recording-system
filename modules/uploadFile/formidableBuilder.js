@@ -3,8 +3,8 @@
  */
 
 var amazonUploader = require('./amazonUploader');
-var config = require('../config');
-var fileRemover = require('./fileRemover');
+var config = require('../../config');
+var fileRemover = require('./../fileRemover');
 var filePathRedirector = require('./filePathRedirector');
 var formidable = require('formidable');
 var metadataHandler = require('./metadataHandler');

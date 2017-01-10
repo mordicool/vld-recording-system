@@ -3,6 +3,7 @@
  */
 
 var config = require('../config');
+var downloaderHandler = require('../modules/downloadFile/downloaderHandler');
 var express = require('express');
 var logger = require('../modules/logger');
 var path = require('path');
@@ -10,25 +11,13 @@ var recordingsTreeGenerator = require('../modules/recordingsTreeGenerator');
 var router = express.Router();
 var S3FS = require('../modules/s3fsImplementation');
 
-router.get('/getTree', getRecordingsTree);
 router.get('/', serveRecordingsViewPage);
+router.get('/getTree', getRecordingsTree);
+router.get('/downloadFile', downloadFile);
 
 module.exports = router;
 
 /********************************************************************************************/
-
-function getRecordingsTree(req, res) {
-    if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
-        logger.warn('Did not send recordings tree, do to non authenticated user. redirected to login page.');
-        res.sendStatus(400);
-    } else {
-        S3FS.readdirp(config.uploadToAmazon.prefix)
-        .then(function (files) {
-            var recordingsTree = recordingsTreeGenerator.generateRecordingsTree(files);
-            res.json(recordingsTree);
-        });
-    }
-}
 
 function serveRecordingsViewPage(req, res) {
     if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
@@ -36,5 +25,33 @@ function serveRecordingsViewPage(req, res) {
         res.redirect('/');
     } else {
         res.sendFile('public/pages/recordingsView.html', {root: path.join(__dirname, '../')});
+    }
+}
+
+function getRecordingsTree(req, res) {
+    if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
+        logger.warn('Did not send recordings tree, do to non authenticated user. redirected to login page.');
+        res.sendStatus(400);
+    } else {
+        S3FS.readdirp(config.amazonModule.prefix)
+        .then(function (files) {
+            var recordingsTree = recordingsTreeGenerator.generateRecordingsTree(files);
+            res.json(recordingsTree);
+        });
+    }
+}
+
+function downloadFile(req, res) {
+    if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
+        logger.warn('Did not send recordings tree, do to non authenticated user. redirected to login page.');
+        res.sendStatus(400);
+    } else {
+        var path = req.query.path;
+        if (!config.amazonModule.applyModule) {
+            logger.debug('Downloading from amazon did not occur, do to false configuration.');
+            res.sendStatus(400);
+        } else {
+            downloaderHandler.handelDownload(res, path);
+        }
     }
 }

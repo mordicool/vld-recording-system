@@ -11,7 +11,7 @@ function removeFile(filePath) {
         logger.debug('File did not remove from local storage, do to false configuration.');
     } else {
         fs.unlinkSync(filePath);
-        logger.debug('File was removed from the local storage; file path: ' + filePath);
+        logger.debug('File was removed from the local storage; File path: ' + filePath);
     }
 
     return filePath;

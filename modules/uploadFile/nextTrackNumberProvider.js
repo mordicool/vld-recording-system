@@ -2,14 +2,14 @@
  * Created by מרדכי on 14 אוגוסט 2016.
  */
 
-var config = require('../config');
+var config = require('../../config');
 var q = require('q');
-var s3fsImplementation = require('./s3fsImplementation');
+var s3fsImplementation = require('./../s3fsImplementation');
 
 function getNextTrackNumberInFolder(folderName, filename) {
     var deferred = q.defer();
 
-    folderName = config.uploadToAmazon.prefix + folderName;
+    folderName = config.amazonModule.prefix + folderName;
     s3fsImplementation.readdir(folderName, function (error, files) {
         var maxTrackNumber = config.metadata.minimumTrackNumber;
         if (!files || files.length === 0) {
