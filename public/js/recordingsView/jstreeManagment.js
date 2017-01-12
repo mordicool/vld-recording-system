@@ -33,13 +33,17 @@ $(function () { $('#jstree').jstree({
                     "label": "הורד",
                     "action": function (obj) {
                         var tree = $("#jstree").jstree(true);
-                        var path = tree.get_path(tree.get_selected()[0], "/");
-                        
+                        var path = tree.get_path($node, "/");
+
                         var areYouSure = confirm('האם אתה בטוח שאתה רוצה להוריד את הקובץ?\nקובץ להורדה: ' + path);
                         if (areYouSure) {
                             window.open('/recordingsView/downloadFile?path=' + path);
                             alert('אנא המתן על סיום ההורדה..');
                         }
+                    },
+                    "_disabled": function (obj) {
+                        var tree = $("#jstree").jstree(true);
+                        return !tree.is_leaf($node);
                     }
                 }
             };

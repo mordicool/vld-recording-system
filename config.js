@@ -8,11 +8,11 @@ var configuration = {
     },
     authentication: {
         regularUser: {
-            cookieValue: '8]E/1c{j)>4,c7N',
+            cookieValue: 'U7+LUL@?{zeW"e=n',
             cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
         adminUser: {
-            cookieValue: '19{:}$2&:{ Ft4n',
+            cookieValue: '2]Q%u_r<8DpbE]Fb',
             cookieMaxAge: 30 * 60 * 1000 // 30 minutes
         }
     },
