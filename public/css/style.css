@@ -1,5 +1,6 @@
 body {
     background-color: mintcream;
+    font: 15px/22px Arial,Helvetica,sans-serif;
 }
 
 .my-nav {
@@ -7,12 +8,15 @@ body {
     padding: .3em;
 }
 
-.file-path {
+.js-tree-box {
     margin-top: 2em;
 }
 
 .upload-btn {
-    margin-top: 2em;
+    margin: 2em .1em;
+    font-size: 140%;
+    height: 3em;
+    width: 100%;
 }
 
 .my-progress-bar {
@@ -28,7 +32,7 @@ h3 {
 }
 
 .small-margin {
-    margin: .8em 0 .8em 0;
+    margin: .8em 0;
 }
 
 ::-webkit-scrollbar {

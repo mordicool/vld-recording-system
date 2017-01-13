@@ -43,44 +43,43 @@
 <body ng-app="recordingSystemApp">
 <vld-navbar></vld-navbar>
 <main ng-controller="recordingSystemController">
-    <div class="container-fluid" ng-cloak="true">
-        <section class="col-xs-12 col-sm-12 col-md-10 col-lg-10
-        col-md-offset-1 col-lg-offset-1" dir="rtl">
-            <aside>
-                <div class="row input-group small-margin">
+    <div class="container-fluid" ng-cloak="true" dir="rtl">
+        <h1 class="text-center">העלאת שיעורים</h1>
+        <aside class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-q">
+            <div class="small-margin col-md-4 col-lg-4">
+                <div class="input-group">
                     <label class="input-group-addon" for="recordingSubject">כותרת השיעור</label>
                     <input class="form-control" id="recordingSubject" name="recordingSubject" type="text" ng-model="recordingSubject">
                 </div>
-                <div class="row input-group small-margin">
+            </div>
+            <div class="small-margin col-md-4 col-lg-4">
+                <div class="input-group">
                     <label class="input-group-addon" for="recordingLecturer">מעביר השיעור</label>
                     <select class="form-control" id="recordingLecturer" name="recordingLecturer" ng-model="recordingLecturer">
                         <option class="text-center" ng-repeat="lecturer in lecturers" ng-cloak>{{lecturer}}</option>
                     </select>
                 </div>
-                <div class="row input-group small-margin">
+            </div>
+            <div class="small-margin col-md-4 col-lg-4">
+                <div class="input-group">
                     <label class="input-group-addon btn btn-default">
-                      בחר הקלטה
-                      <input id="fileUploaded" name="fileUploaded" type="file" file-model="recording" style="display: none;">
+                        בחר הקלטה<input id="fileUploaded" name="fileUploaded" type="file" file-model="recording" style="display: none;">
                     </label>
                     <input id="fileText" class="form-control" type="text" disabled>
                 </div>
-            </aside>
-            <aside class="row upload-btn">
-                <button class="btn btn-success btn-lg active col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2
-                col-md-offset-2 col-lg-offset-2" ng-click="uploadRecording()" data-toggle="modal"
-                        data-target="#uploadingModal">העלה כעת  <span class="glyphicon glyphicon-cloud-upload"></span></button>
-            </aside>
-            <aside class="row well file-path" style="border-radius: 3em">
-                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
-                    <jstree></jstree>
-                </div>
-            </aside>
-            <modal></modal>
-        </section>
+            </div>
+        </aside>
+        <aside class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+            <button class="btn btn-success btn-lg active upload-btn" ng-click="uploadRecording()" data-toggle="modal"
+                    data-target="#uploadingModal">העלה כעת  <span class="glyphicon glyphicon-cloud-upload"></span></button>
+        </aside>
+        <aside class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+            <div class="js-tree-box">
+                <jstree></jstree>
+            </div>
+        </aside>
+        <modal></modal>
     </div>
 </main>
-<footer>
-    <p class="text-center">&copy; כל הזכויות שמורות למרדכי וינברג</p>
-</footer>
 </body>
 </html>

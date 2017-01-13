@@ -38,7 +38,7 @@ $(function () { $('#jstree').jstree({
                         var areYouSure = confirm('האם אתה בטוח שאתה רוצה להוריד את הקובץ?\nקובץ להורדה: ' + path);
                         if (areYouSure) {
                             window.open('/recordingsView/downloadFile?path=' + path);
-                            alert('אנא המתן על סיום ההורדה..');
+                            alert('ההורדה בעיצומה!\nאנא המתן עד לסיום ההורדה..');
                         }
                     },
                     "_disabled": function (obj) {
