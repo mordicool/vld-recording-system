@@ -19,8 +19,9 @@ var configuration = {
     uploadsFolder: 'uploads/',
     downloadsFolder: 'downloads/',
     logger: {
+        debugLogFileName: 'logs/debugLog.log',
         infoLogFileName: 'logs/infoLog.log',
-        debugLogFileName: 'logs/debugLog.log'
+        warnLogFileName: 'logs/warnLog.log'
     },
     metadata: {
         applyModule: true,

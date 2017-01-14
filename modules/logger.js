@@ -25,6 +25,15 @@ log4js.configure({
                 filename: config.logger.debugLogFileName,
                 category: 'recordingSystem'
             }
+        },
+        {
+            type: 'logLevelFilter',
+            level: 'WARN',
+            appender: {
+                type: 'file',
+                filename: config.logger.warnLogFileName,
+                category: 'recordingSystem'
+            }
         }
     ]
 });

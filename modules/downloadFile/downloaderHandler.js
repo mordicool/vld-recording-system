@@ -23,7 +23,6 @@ function handelDownload(res, filePath) {
             res.download(destinationPath, fileName, function (err) {
                 if (err) {
                     logger.error('Error when downloading a file. File name: ' + fullPath);
-                    console.log(JSON.stringify(err));
                     deferred.reject(err);
                 } else {
                     logger.info('Download file finished successfully. File name: ' + fullPath);
