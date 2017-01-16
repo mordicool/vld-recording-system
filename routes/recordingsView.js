@@ -7,7 +7,7 @@ var downloaderHandler = require('../modules/downloadFile/downloaderHandler');
 var express = require('express');
 var logger = require('../modules/logger');
 var path = require('path');
-var recordingsTreeGenerator = require('../modules/recordingsTreeGenerator');
+var recordingsTreeGenerator = require('../modules/downloadFile/recordingsTreeGenerator');
 var router = express.Router();
 var S3FS = require('../modules/s3fsImplementation');
 

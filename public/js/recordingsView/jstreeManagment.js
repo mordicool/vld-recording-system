@@ -7,7 +7,8 @@ $(function () { $('#jstree').jstree({
         "sort",
         "wholerow",
         "state",
-        "contextmenu"
+        "contextmenu",
+        "types"
     ],
     "state": {
         "key": "selectedNode"
@@ -22,6 +23,11 @@ $(function () { $('#jstree').jstree({
         'data': {
             'url': '/recordingsView/getTree',
             'dataType': 'json'
+        }
+    },
+    "types": {
+        "leaf": {
+            "icon": 'glyphicon glyphicon-music'
         }
     },
     "contextmenu": {

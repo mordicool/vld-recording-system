@@ -21,6 +21,8 @@ function addFileToTree(tree, fileDirs) {
                 "text": fileDirs[0],
                 "children": []
             };
+            if (fileDirs.length == 1) node.type = "leaf";
+
             tree.push(node);
             addFileToTree(node.children, fileDirs.slice(1));
         }
