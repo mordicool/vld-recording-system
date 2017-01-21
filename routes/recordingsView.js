@@ -27,6 +27,7 @@ function serveRecordingsViewPage(req, res) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
         res.redirect('/');
     } else {
+        logger.debug('User entered recordings view page.');
         res.sendFile('public/pages/recordingsView.html', {root: path.join(__dirname, '../')});
     }
 }
