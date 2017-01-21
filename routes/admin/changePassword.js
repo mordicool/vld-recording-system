@@ -9,17 +9,20 @@ var logger = require('../../modules/logger');
 var path = require('path');
 var router = express.Router();
 
-router.get('/user', changeUserPassword);
+router.get('/uploadDownload', changeUserUploadDownloadPassword);
+router.get('/download', changeUserDownloadPassword);
 router.get('/admin', changeAdminPassword);
 
 module.exports = router;
 
 /********************************************************************************************/
 
-function changeUserPassword(req, res) {
+function changeUserUploadDownloadPassword(req, res) {
     changePasswordByUserType(req, res, 'user');
 }
-
+function changeUserDownloadPassword(req, res) {
+    changePasswordByUserType(req, res, 'inspector');
+}
 function changeAdminPassword(req, res) {
     changePasswordByUserType(req, res, 'admin');
 }
@@ -50,6 +53,8 @@ function changePasswordByUserType(req, res, userType) {
 function changePassword(passwords, newPassword, userType) {
     if (userType == 'user') {
         passwords.userPassword = newPassword;
+    } else if (userType == 'inspector') {
+        passwords.inspectorPassword = newPassword;
     } else if (userType == 'admin') {
         passwords.adminPassword = newPassword;
     }

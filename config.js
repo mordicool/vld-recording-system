@@ -11,6 +11,10 @@ var configuration = {
             cookieValue: 'U7+LUL@?{zeW"e=n',
             cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
+        inspectorUser: {
+            cookieValue: '=A3ragUpe*Ej',
+            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
+        },
         adminUser: {
             cookieValue: '2]Q%u_r<8DpbE]Fb',
             cookieMaxAge: 30 * 60 * 1000 // 30 minutes

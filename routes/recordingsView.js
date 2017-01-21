@@ -20,7 +20,10 @@ module.exports = router;
 /********************************************************************************************/
 
 function serveRecordingsViewPage(req, res) {
-    if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
+    var validPasswords = [];
+    validPasswords.push(config.authentication.regularUser.cookieValue);
+    validPasswords.push(config.authentication.inspectorUser.cookieValue);
+    if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
         res.redirect('/');
     } else {
@@ -29,9 +32,12 @@ function serveRecordingsViewPage(req, res) {
 }
 
 function getRecordingsTree(req, res) {
-    if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
-        logger.warn('Did not send recordings tree, do to non authenticated user. redirected to login page.');
-        res.sendStatus(400);
+    var validPasswords = [];
+    validPasswords.push(config.authentication.regularUser.cookieValue);
+    validPasswords.push(config.authentication.inspectorUser.cookieValue);
+    if (validPasswords.indexOf(req.cookies.password) == -1) {
+        logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
+        res.redirect('/');
     } else {
         S3FS.readdirp(config.amazonModule.prefix)
         .then(function (files) {
@@ -42,9 +48,12 @@ function getRecordingsTree(req, res) {
 }
 
 function downloadFile(req, res) {
-    if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
-        logger.warn('Did not send recordings tree, do to non authenticated user. redirected to login page.');
-        res.sendStatus(400);
+    var validPasswords = [];
+    validPasswords.push(config.authentication.regularUser.cookieValue);
+    validPasswords.push(config.authentication.inspectorUser.cookieValue);
+    if (validPasswords.indexOf(req.cookies.password) == -1) {
+        logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
+        res.redirect('/');
     } else {
         var path = req.query.path;
         if (!config.amazonModule.applyModule) {

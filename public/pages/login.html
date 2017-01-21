@@ -34,7 +34,7 @@
         <h1 class="text-center" style="margin-bottom: 1em">כניסה</h1>
         <input type="password" class="form-control text-center" placeholder="הכנס סיסמא" ng-model="password" ng-keyup="$event.keyCode == 13 && Login()">
         <div class="input-group col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: .7em;">
-            <div class="alert alert-danger text-center" ng-show="isError" role="alert">הסיסמא שגואה, אנא הזן סיסמא נכונה</div>
+            <div class="alert alert-danger text-center" ng-show="isError" role="alert">הסיסמא שגויה, אנא הזן סיסמא נכונה</div>
         </div>
         <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2" style="margin-top: 2em;">
             <button class="btn btn-success btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-click="Login()">

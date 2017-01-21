@@ -28,6 +28,7 @@ function serveIndexPage(req, res) {
     } else if(password == config.authentication.regularUser.cookieValue) {
         res.sendFile('public/pages/index.html', {root: path.join(__dirname, '../')});
     } else {
-        res.sendFile('public/pages/login.html', {root: path.join(__dirname, '../')});
+        res.clearCookie('password')
+            .sendFile('public/pages/login.html', {root: path.join(__dirname, '../')});
     }
 }

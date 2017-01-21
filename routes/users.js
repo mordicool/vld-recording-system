@@ -20,6 +20,9 @@ function login(req, res) {
     if (password == passwords.adminPassword && !req.cookies.password) {
         res.cookie('password', config.authentication.adminUser.cookieValue, {maxAge: config.authentication.adminUser.cookieMaxAge})
             .sendStatus(200);
+    } else if(password == passwords.inspectorPassword && !req.cookies.password) {
+        res.cookie('password', config.authentication.inspectorUser.cookieValue, {maxAge: config.authentication.inspectorUser.cookieMaxAge})
+            .sendStatus(205);
     } else if(password == passwords.userPassword && !req.cookies.password) {
         res.cookie('password', config.authentication.regularUser.cookieValue, {maxAge: config.authentication.regularUser.cookieMaxAge})
             .sendStatus(200);

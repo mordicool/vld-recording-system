@@ -14,6 +14,8 @@ app.controller('loginController', ['$scope', '$http', function ($scope, $http) {
             .then(function (response) {
                 if (response.status == 200) {
                     location.reload();
+                } else if (response.status == 205) {
+                    location.href = '/recordingsView';
                 }
             }, function (response) {
                 if (response.status == 400) {

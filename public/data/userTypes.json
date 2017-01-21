@@ -1,0 +1,14 @@
+[
+  {
+    "name": "uploadDownload",
+    "title": "סיסמת העלאה + הורדה"
+  },
+  {
+    "name": "download",
+    "title": "סיסמת הורדה בלבד"
+  },
+  {
+    "name": "admin",
+    "title": "סיסמת מנהל"
+  }
+]
