@@ -41,7 +41,7 @@ h3 {
 
 .admin-body-scroll {
     overflow-y: auto;
-    height: 65vh;
+    height: 60vh;
 }
 
 .panel {
@@ -58,4 +58,12 @@ h3 {
 
 .my-danger-color {
     background-color: #e19896 !important;
+}
+
+.tabs-content-margin {
+    margin-top: 1em;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    background-color: rgba(205, 242, 249, 0.42);
 }

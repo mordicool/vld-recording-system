@@ -48,10 +48,23 @@
     <div class="row">
         <h1 style="margin-bottom: 1em;" class="text-center">מסך ניהול</h1>
         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1">
-            <div class="admin-body-scroll">
-                <lecturers></lecturers>
-                <js-tree></js-tree>
-                <change-password></change-password>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active">
+                    <a href="#managementView" aria-controls="managementView" role="tab" data-toggle="tab">ניהול מערכת</a>
+                </li>
+                <li role="presentation">
+                    <a href="#logsView" aria-controls="logsView" role="tab" data-toggle="tab">הסטורית שימוש</a>
+                </li>
+            </ul>
+            <div class="tab-content tabs-content-margin">
+                <div role="tabpanel" class="tab-pane active admin-body-scroll" id="managementView">
+                    <lecturers></lecturers>
+                    <js-tree></js-tree>
+                    <change-password></change-password>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="logsView">
+                    <h1>Logs HERE!!</h1>
+                </div>
             </div>
         </div>
     </div>
