@@ -41,6 +41,8 @@
     <script src="../js/admin/changePassword/changePasswordDirective.js" type="application/javascript"></script>
     <script src="../js/admin/changePassword/singleChangePassword/controller.js" type="application/javascript"></script>
     <script src="../js/admin/changePassword/singleChangePassword/directive.js" type="application/javascript"></script>
+    <script src="../js/admin/logsView/controller.js" type="application/javascript"></script>
+    <script src="../js/admin/logsView/directive.js" type="application/javascript"></script>
 </head>
 <body ng-app="admin">
 <vld-navbar is-recordings-view="false" is-upload="false"></vld-navbar>
@@ -63,7 +65,7 @@
                     <change-password></change-password>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="logsView">
-                    <h1>Logs HERE!!</h1>
+                    <logs-view></logs-view>
                 </div>
             </div>
         </div>
