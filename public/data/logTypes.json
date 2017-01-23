@@ -1,0 +1,92 @@
+[
+  {
+    "level": "INFO",
+    "name": "file upload",
+    "hebrewName": "העלאת קובץ",
+    "regex": "^New record arrived. File name: (.*)$"
+  },
+  {
+    "level": "INFO",
+    "name": "file download",
+    "hebrewName": "הורדת קובץ",
+    "regex": "^Download file finished successfully. File name: (.*)$"
+  },
+  {
+    "level": "INFO",
+    "name": "lecturer added",
+    "hebrewName": "הוספת מעביר שיעור",
+    "regex": "^New lecturer added successfully; Lecturer name: (.*)$"
+  },
+  {
+    "level": "INFO",
+    "name": "lecturer removed",
+    "hebrewName": "הסרת מעביר שיעור",
+    "regex": "^Lecturer removed successfully; Lecturer name: (.*)$"
+  },
+  {
+    "level": "INFO",
+    "name": "jstree changed",
+    "hebrewName": "שינוי עץ התיקיות",
+    "regex": "^Tree changed successfully.$"
+  },
+  {
+    "level": "INFO",
+    "name": "user password changed",
+    "hebrewName": "שינוי סיסמת העלאה + הורדה",
+    "regex": "^Changed user password successfully; New password: (.*)$"
+  },
+  {
+    "level": "INFO",
+    "name": "inspector password changed",
+    "hebrewName": "שינוי סיסמת הורדה בלבד",
+    "regex": "^Changed inspector password successfully; New password: (.*)$"
+  },
+  {
+    "level": "INFO",
+    "name": "admin password changed",
+    "hebrewName": "שינוי סיסמת מנהל",
+    "regex": "^Changed admin password successfully; New password: (.*)$"
+  },
+  {
+    "level": "DEBUG",
+    "name": "new entry to index page",
+    "hebrewName": "בקשת גישה למסך העלאה",
+    "regex": "^User entered index page.$"
+  },
+  {
+    "level": "DEBUG",
+    "name": "new entry to admin page",
+    "hebrewName": "בקשת גישה למסך ניהול",
+    "regex": "^User entered admin page.$"
+  },
+  {
+    "level": "DEBUG",
+    "name": "new entry to recordings view page",
+    "hebrewName": "בקשת גישה למסך הורדה",
+    "regex": "^User entered recordings view page.$"
+  },
+  {
+    "level": "DEBUG",
+    "name": "new entry to login page",
+    "hebrewName": "בקשת גישה למסך כניסה",
+    "regex": "^User entered login page.$"
+  },
+  {
+    "level": "ERROR",
+    "name": "default error",
+    "hebrewName": "שגיאה כללית",
+    "regex": "^(.*)$"
+  },
+  {
+    "level": "WARN",
+    "name": "non authenticated user",
+    "hebrewName": "משתמש לא מזוהה",
+    "regex": "^Did not (.*), do to non authenticated user. redirected to login page.$"
+  },
+  {
+    "level": "~~~",
+    "name": "other",
+    "hebrewName": "אחר",
+    "regex": "^(.*)$"
+  }
+]

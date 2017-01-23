@@ -20,5 +20,9 @@
     "s3fs": "^2.5.0"
   },
   "author": "Mordicool inc.",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "angular": "^1.6.1",
+    "bootstrap": "^3.3.7"
+  }
 }
