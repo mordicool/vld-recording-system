@@ -7,7 +7,7 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
     $scope.logs = [];
     $http.get('admin/logs').then(function (response) {
         if (response.status == 200) {
-            logAnalysisService.analyizeAll(response.data.logs).then(function (analyzedLogs) {
+            logAnalysisService.analyzeAll(response.data.logs).then(function (analyzedLogs) {
                 $scope.logs = analyzedLogs;
                 $scope.$apply();
             });

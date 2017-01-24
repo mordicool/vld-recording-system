@@ -4,16 +4,16 @@
 
 app.service('logAnalysisService', ['$http', function ($http) {
 
-    this.analyizeAll = function (logs) {
+    this.analyzeAll = function (logs) {
         var promises = [];
         for (var i = 0; i < logs.length; i++) {
-            promises.push(this.analyize(logs[i]));
+            promises.push(this.analyze(logs[i]));
         }
 
         return Promise.all(promises);
     };
 
-    this.analyize = function (log) {
+    this.analyze = function (log) {
         var logPattern = /^\[(.*)\] \[(.*)\] recordingSystem - (.*)$/;
         var logBrokenPattern = logPattern.exec(log);
 
