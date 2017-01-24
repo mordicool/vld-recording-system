@@ -4,6 +4,12 @@
 
 app.service('logAnalysisService', ['$http', function ($http) {
 
+    var logTypesPromise = new Promise(function (resolve, reject) {
+        $http.get('data/logTypes.json').then(function (response) {
+            resolve(response.data);
+        });
+    });
+
     this.analyzeAll = function (logs) {
         var promises = [];
         for (var i = 0; i < logs.length; i++) {
@@ -37,9 +43,7 @@ app.service('logAnalysisService', ['$http', function ($http) {
 
     function getLogType(level, message) {
         return new Promise(function(resolve, reject) {
-            $http.get('data/logTypes.json').then(function (response) {
-                var logTypes = response.data;
-
+            logTypesPromise.then(function (logTypes) {
                 for (var i = 0; i < logTypes.length; i++) {
                     var logType = logTypes[i];
                     if (logType.level == level && RegExp(logType.regex).test(message)) {
