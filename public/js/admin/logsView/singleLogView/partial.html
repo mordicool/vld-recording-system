@@ -1,3 +1,8 @@
-<p>
-    {{log.level}}: {{log.type.hebrewName}}
-</p>
+<a href="#"
+   class="list-group-item"
+   ng-class="'list-group-item-' + transformLogType()">
+    <p>
+        {{log.time}}: {{log.type.hebrewName}}
+    </p>
+</a>
+<!--ng-attr-id="{{'log-number-' + }}"-->

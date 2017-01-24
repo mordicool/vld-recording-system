@@ -16,14 +16,14 @@ app.service('logAnalysisService', ['$http', function ($http) {
             promises.push(this.analyze(logs[i]));
         }
 
-        return Promise.all(promises);
+        return Promise.all(promises).then(filterOtherLogs);
     };
 
     this.analyze = function (log) {
         var logPattern = /^\[(.*)\] \[(.*)\] recordingSystem - (.*)$/;
         var logBrokenPattern = logPattern.exec(log);
 
-        if (log == '' || !logBrokenPattern) return {};
+        if (log == '' || !logBrokenPattern) return null;
 
         var time = logBrokenPattern[1];
         var level = logBrokenPattern[2];
@@ -52,6 +52,12 @@ app.service('logAnalysisService', ['$http', function ($http) {
                 }
                 resolve(logTypes[logTypes.length - 1]);
             });
+        });
+    }
+
+    function filterOtherLogs(logs) {
+        return logs.filter(function (log) {
+            return log && log.type.name !== 'other';
         });
     }
 
