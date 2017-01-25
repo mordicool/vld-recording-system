@@ -6,7 +6,7 @@
             <th>אירוע</th>
             <th>פירוט</th>
         </tr>
-        <tr ng-repeat="log in logs | orderBy: time : true track by $index" ng-class="transformLogType(log.level)">
+        <tr ng-repeat="log in logs.filter(logsFilter) | orderBy: time : true track by $index" ng-class="transformLogType(log.level)">
             <td>{{logs.length - $index}}</td>
             <td>{{log.time}}</td>
             <td>{{log.type.hebrewName}}</td>

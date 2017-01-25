@@ -12,11 +12,11 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
                 $scope.$apply();
             });
         }
-    }, function (response) {
-        if (response.status == 400) {
-            location.reload();
-        }
     });
+
+    $scope.logsFilter = function (log) {
+        return true;
+    };
 
     $scope.transformLogType = function (level) {
         switch(level) {
