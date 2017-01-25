@@ -4,6 +4,7 @@
 
 var config = require('../config');
 var express = require('express');
+var logger = require('../modules/logger');
 var passwords = require('../data/passwords.json');
 var q = require('q');
 var router = express.Router();
@@ -27,6 +28,7 @@ function login(req, res) {
         res.cookie('password', config.authentication.regularUser.cookieValue, {maxAge: config.authentication.regularUser.cookieMaxAge})
             .sendStatus(200);
     } else {
+        logger.warn('User entered wrong password. password entered: ' + password);
         res.sendStatus(400);
     }
 }
