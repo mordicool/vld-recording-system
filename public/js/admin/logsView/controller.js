@@ -31,6 +31,10 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
             default:
                 return '';
         }
+    };
+
+    $scope.getMessageData = function (regex, message) {
+        return RegExp(regex).exec(message).splice(1).join(',');
     }
 
 }]);

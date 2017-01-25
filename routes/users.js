@@ -34,6 +34,7 @@ function login(req, res) {
 }
 
 function logout(req, res) {
+    logger.debug('User logged out.');
     res.clearCookie('password')
         .redirect('/');
 }

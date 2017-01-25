@@ -84,6 +84,12 @@
     "regex": "^Did not (.*), do to non authenticated user. redirected to login page.$"
   },
   {
+    "level": "WARN",
+    "name": "bad password entered",
+    "hebrewName": "הוזנה סיסמה שגויה",
+    "regex": "^User entered wrong password. password entered: (.*)$"
+  },
+  {
     "level": "~~~",
     "name": "other",
     "hebrewName": "אחר",
