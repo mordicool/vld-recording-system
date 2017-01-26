@@ -3,8 +3,8 @@
  */
 
 app.service('logAnalysisService', ['$http', function ($http) {
-
-    var logTypesPromise = new Promise(function (resolve, reject) {
+    var that = this;
+    this.logTypesPromise = new Promise(function (resolve, reject) {
         $http.get('data/logTypes.json').then(function (response) {
             resolve(response.data);
         });
@@ -15,7 +15,6 @@ app.service('logAnalysisService', ['$http', function ($http) {
         for (var i = 0; i < logs.length; i++) {
             promises.push(this.analyze(logs[i]));
         }
-
         return Promise.all(promises).then(filterOtherLogs);
     };
 
@@ -28,13 +27,13 @@ app.service('logAnalysisService', ['$http', function ($http) {
         var time = logBrokenPattern[1];
         var level = logBrokenPattern[2];
         var message = logBrokenPattern[3];
-
         return new Promise(function (resolve, reject) {
             getLogType(level, message).then(function (logType) {
                 resolve({
                     time: time,
                     level: level,
                     message: message,
+                    extraMessageData: RegExp(logType.regex).exec(message).splice(1).join(','),
                     type: logType
                 });
             });
@@ -43,7 +42,7 @@ app.service('logAnalysisService', ['$http', function ($http) {
 
     function getLogType(level, message) {
         return new Promise(function(resolve, reject) {
-            logTypesPromise.then(function (logTypes) {
+            that.logTypesPromise.then(function (logTypes) {
                 for (var i = 0; i < logTypes.length; i++) {
                     var logType = logTypes[i];
                     if (logType.level == level && RegExp(logType.regex).test(message)) {
@@ -54,11 +53,9 @@ app.service('logAnalysisService', ['$http', function ($http) {
             });
         });
     }
-
     function filterOtherLogs(logs) {
         return logs.filter(function (log) {
             return log && log.type.name !== 'other';
         });
     }
-
 }]);

@@ -1,16 +1,62 @@
-<div class="col-lg-12">
-    <table class="table table-hover table-bordered table-condensed">
-        <tr class="active">
-            <th>#</th>
-            <th>תאריך</th>
-            <th>אירוע</th>
-            <th>פירוט</th>
-        </tr>
-        <tr ng-repeat="log in logs.filter(logsFilter) | orderBy: time : true track by $index" ng-class="transformLogType(log.level)">
-            <td>{{logs.length - $index}}</td>
-            <td>{{log.time}}</td>
-            <td>{{log.type.hebrewName}}</td>
-            <td>{{getMessageData(log.type.regex, log.message)}}</td>
-        </tr>
-    </table>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <div class="row small-margin">
+        <div class="pull-left">
+            <button class="btn btn-deafult btn-sm" ng-click="chooseAll()">בחר הכל</button>
+            <button class="btn btn-deafult btn-sm" ng-click="unchooseAll()">הסר הכל</button>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
+        <table class="table table-hover table-bordered table-condensed">
+            <tr class="active">
+                <th class="text-center">
+                    <span class="glyphicon glyphicon-check"></span>
+                </th>
+                <th class="text-center">סוג אירוע</th>
+                <th class="text-center">סך האירועים</th>
+            </tr>
+            <tr ng-repeat="logType in logTypes.slice(0, logTypes.length / 2) track by $index">
+                <td class="text-center">
+                    <input type="checkbox" ng-model="logType.isChecked">
+                </td>
+                <td>{{logType.hebrewName}}</td>
+                <td class="text-center">{{logType.numberOfLogs}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
+        <table class="table table-hover table-bordered table-condensed">
+            <tr class="active">
+                <th class="text-center">
+                    <span class="glyphicon glyphicon-check"></span>
+                </th>
+                <th class="text-center">סוג אירוע</th>
+                <th class="text-center">סך האירועים</th>
+            </tr>
+            <tr ng-repeat="logType in logTypes.slice(logTypes.length / 2) track by $index">
+                <td class="text-center">
+                    <input type="checkbox" ng-model="logType.isChecked">
+                </td>
+                <td>{{logType.hebrewName}}</td>
+                <td class="text-center">{{logType.numberOfLogs}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-hover table-bordered table-condensed">
+            <tr class="active">
+                <th class="text-center">#</th>
+                <th class="text-center">תאריך</th>
+                <th class="text-center">אירוע</th>
+                <th class="text-center">פירוט</th>
+            </tr>
+            <tr ng-repeat="log in logs.filter(logsFilter) | orderBy: time : true track by $index" ng-class="transformLogType(log.level)">
+                <td>{{logs.length - $index}}</td>
+                <td>{{log.time}}</td>
+                <td>{{log.type.hebrewName}}</td>
+                <td>{{log.extraMessageData}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

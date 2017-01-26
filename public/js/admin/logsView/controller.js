@@ -2,9 +2,10 @@
  * Created by מרדכי on 23 ינואר 2017.
  */
 
-app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', function ($scope, $http, logAnalysisService) {
-
+app.controller('logsViewController', ['$scope', '$http', '$timeout', 'logAnalysisService', function ($scope, $http, $timeout, logAnalysisService) {
     $scope.logs = [];
+    $scope.logTypes = [];
+
     $http.get('admin/logs').then(function (response) {
         if (response.status == 200) {
             logAnalysisService.analyzeAll(response.data.logs).then(function (analyzedLogs) {
@@ -13,11 +14,22 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
             });
         }
     });
+    logAnalysisService.logTypesPromise.then(function (logTypes) {
+        $timeout(function () {
+            $scope.logTypes = logTypes
+                .filter(function (logType) {
+                    return logType.name !== 'other';
+                }).map(addDataOfLogTypes);
+        }, 1000);
+    });
 
     $scope.logsFilter = function (log) {
-        return true;
+        for (var i = 0; i < $scope.logTypes.length; i++) {
+            if ($scope.logTypes[i].name == log.type.name && $scope.logTypes[i].isChecked) {
+                return true;
+            }
+        }
     };
-
     $scope.transformLogType = function (level) {
         switch(level) {
             case 'INFO':
@@ -32,9 +44,27 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
                 return '';
         }
     };
+    $scope.chooseAll = function () {
+        for (var i = 0; i < $scope.logTypes.length; i++) {
+            $scope.logTypes[i].isChecked = true;
+        }
+    };
+    $scope.unchooseAll = function () {
+        for (var i = 0; i < $scope.logTypes.length; i++) {
+            $scope.logTypes[i].isChecked = false;
+        }
+    };
+    
+    function addDataOfLogTypes(logType, index, logTypes) {
+        var logsCount = 0;
+        for (var i = 0; i < $scope.logs.length; i++) {
+            if ($scope.logs[i].type.name == logType.name) {
+                logsCount++;
+            }
+        }
+        logType.numberOfLogs = logsCount;
+        logType.isChecked = true;
 
-    $scope.getMessageData = function (regex, message) {
-        return RegExp(regex).exec(message).splice(1).join(',');
+        return logType;
     }
-
 }]);
