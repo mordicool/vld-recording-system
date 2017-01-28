@@ -24,7 +24,7 @@ function serveLogs(req, res) {
         var logs = fs.readFileSync(logsPath, 'utf8');
 
         var logsObject = {
-            logs: logs.split('\r\n')
+            logs: logs.split(/\r?\n/)
         };
 
         logger.debug('Served logs to admin page.');

@@ -17,7 +17,7 @@ var configuration = {
         },
         adminUser: {
             cookieValue: '2]Q%u_r<8DpbE]Fb',
-            cookieMaxAge: 30 * 60 * 1000 // 30 minutes
+            cookieMaxAge: 20 * 60 * 1000 // 20 minutes
         }
     },
     uploadsFolder: 'uploads/',
