@@ -2,25 +2,31 @@
  * Created by מרדכי on 23 ינואר 2017.
  */
 
-app.controller('logsViewController', ['$scope', '$http', '$timeout', 'logAnalysisService', function ($scope, $http, $timeout, logAnalysisService) {
+app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', function ($scope, $http, logAnalysisService) {
     $scope.logs = [];
     $scope.logTypes = [];
+    var that = this;
 
-    $http.get('admin/logs').then(function (response) {
-        if (response.status == 200) {
-            logAnalysisService.analyzeAll(response.data.logs).then(function (analyzedLogs) {
-                $scope.logs = analyzedLogs;
-                $scope.$apply();
-            });
-        }
+    this.logsPromise = new Promise(function (resolve, reject) {
+        $http.get('admin/logs').then(function (response) {
+            if (response.status == 200) {
+                logAnalysisService.analyzeAll(response.data).then(function (analyzedLogs) {
+                    $scope.logs = analyzedLogs;
+                    resolve(analyzedLogs);
+                });
+            }
+        });
     });
     logAnalysisService.logTypesPromise.then(function (logTypes) {
-        $timeout(function () {
+        that.logsPromise.then(function (logs) {
             $scope.logTypes = logTypes
                 .filter(function (logType) {
                     return logType.name !== 'other';
-                }).map(addDataOfLogTypes);
-        }, 1000);
+                }).map(function (logType) {
+                    return addDataOfLogTypes(logType, logs);
+                });
+            $scope.$apply();
+        });
     });
 
     $scope.logsFilter = function (log) {
@@ -55,10 +61,10 @@ app.controller('logsViewController', ['$scope', '$http', '$timeout', 'logAnalysi
         }
     };
     
-    function addDataOfLogTypes(logType, index, logTypes) {
+    function addDataOfLogTypes(logType, logs) {
         var logsCount = 0;
-        for (var i = 0; i < $scope.logs.length; i++) {
-            if ($scope.logs[i].type.name == logType.name) {
+        for (var i = 0; i < logs.length; i++) {
+            if (logs[i].type.name == logType.name) {
                 logsCount++;
             }
         }

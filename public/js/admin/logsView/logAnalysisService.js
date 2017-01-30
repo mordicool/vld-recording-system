@@ -19,14 +19,9 @@ app.service('logAnalysisService', ['$http', function ($http) {
     };
 
     this.analyze = function (log) {
-        var logPattern = /^\[(.*)\] \[(.*)\] recordingSystem - (.*)$/;
-        var logBrokenPattern = logPattern.exec(log);
-
-        if (log == '' || !logBrokenPattern) return null;
-
-        var time = logBrokenPattern[1];
-        var level = logBrokenPattern[2];
-        var message = logBrokenPattern[3];
+        var time = log.timestamp;
+        var level = log.level;
+        var message = log.data;
         return new Promise(function (resolve, reject) {
             getLogType(level, message).then(function (logType) {
                 resolve({

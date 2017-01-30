@@ -2,7 +2,7 @@
  * Created by מרדכי on 23 ינואר 2017.
  */
 
-var api = require('../modules/db/logs/api');
+var api = require('../../modules/db/logs/api');
 var config = require('../../config');
 var express = require('express');
 var fs = require('fs');
