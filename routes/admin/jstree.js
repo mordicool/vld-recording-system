@@ -3,11 +3,10 @@
  */
 
 var config = require('../../config');
-var express = require('express');
 var fs = require('fs');
 var logger = require('../../modules/logger');
 var path = require('path');
-var router = express.Router();
+var router = require('express').Router();
 
 router.post('/updateTree', updateTree);
 

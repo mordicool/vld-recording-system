@@ -4,10 +4,9 @@
 
 var adminRoute = require('./admin');
 var config = require('../config');
-var express = require('express');
 var logger = require('../modules/logger');
 var path = require('path');
-var router = express.Router();
+var router = require('express').Router();
 var recordingsViewRoute = require('./recordingsView');
 var uploadRoute = require('./upload');
 var usersRoute = require('./users');

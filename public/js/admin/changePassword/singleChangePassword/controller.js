@@ -15,7 +15,7 @@ app.controller('singleChangePasswordController', ['$scope', '$http', function ($
                     location.reload();
                 }
             }, function (response) {
-                if (response.status == 400) {
+                if (response.status !== 200) {
                     alert('שגיאה! הסיסמא לא שונתה.');
                     location.reload();
                 }

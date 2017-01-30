@@ -3,11 +3,10 @@
  */
 
 var config = require('../config');
-var express = require('express');
 var fileHandler = require('../modules/uploadFile/fileHandler');
 var logger = require('../modules/logger');
 var q = require('q');
-var router = express.Router();
+var router = require('express').Router();
 
 router.post('/', uploadFile);
 
