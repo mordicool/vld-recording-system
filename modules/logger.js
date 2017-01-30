@@ -2,12 +2,21 @@
  * Created by מרדכי on 15 יולי 2016.
  */
 
-var log4js = require('log4js');
 var config = require('../config');
+var log4js = require('log4js');
+var dbConfig = config.db;
 
 log4js.configure({
     appenders: [
         { type: 'console' },
+        {
+            type: 'log4js-node-mongodb',
+            connectionString: 'mongodb://' + dbConfig.user + ':' +
+                                dbConfig.password + '@' +
+                                dbConfig.host + ':' +
+                                dbConfig.port + '/' +
+                                dbConfig.dbName
+        },
         {
             type: 'logLevelFilter',
             level: 'INFO',
