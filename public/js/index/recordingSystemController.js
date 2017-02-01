@@ -9,7 +9,7 @@ app.controller('recordingSystemController', [
     'recordingPackageBuilderService',
     'config',
     function ($scope, $http, uploadFileService, recordingPackageBuilderService, config) {
-    $http.get('data/lecturers.json').then(function (response) {
+    $http.get('/getLecturers').then(function (response) {
         $scope.lecturers = response.data.lecturers.sort();
         $scope.recordingLecturer = 'אחר';
     });

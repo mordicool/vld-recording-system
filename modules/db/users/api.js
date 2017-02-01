@@ -6,6 +6,7 @@ var dbConnection = require('../dbConnection');
 var logger = require('../../logger');
 var q = require('q');
 var schema = require('./schema');
+var sharedDbQueries = require('../sharedDbQueries');
 
 module.exports = {
     getPasswords: getPasswords,
@@ -13,24 +14,12 @@ module.exports = {
 };
 
 function getPasswords() {
-    var deferred = q.defer();
-    dbConnection.connect().then(function () {
-        schema.find(function (error, passwords) {
-            if (error) {
-                logger.error('Error while receiving passwords from db. Error: ' + error);
-                deferred.reject(error);
-            } else {
-                deferred.resolve(passwords);
-            }
-            dbConnection.disconnect();
-        });
-    });
-    return deferred.promise;
+    return sharedDbQueries.getAllDocumentsBySchema(schema);
 }
 
 function changePassword(userName, newPassword) {
     var deferred = q.defer();
-    dbConnection.connect().then(function () {
+    dbConnection.connect().then(function (db) {
         schema.findOne({name: userName}, function (err, user) {
             user.password = newPassword;
             user.save(function (error) {
@@ -41,7 +30,7 @@ function changePassword(userName, newPassword) {
                     logger.info('Changed ' + userName + ' password successfully; New password: ' + newPassword);
                     deferred.resolve();
                 }
-                dbConnection.disconnect();
+                dbConnection.disconnect(db);
             });
         });
     });

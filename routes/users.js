@@ -26,7 +26,7 @@ function login(req, res) {
             res.cookie('password', config.authentication.inspectorUser.cookieValue, {maxAge: config.authentication.inspectorUser.cookieMaxAge})
                 .sendStatus(205);
         } else if(password == passwords[0].password) {
-            res.cookie('password', config.authentication.regularUser.cookieValue, {maxAge: config.authentication.regularUser.cookieMaxAge})
+            res.cookie('password', config.authentication.generalUser.cookieValue, {maxAge: config.authentication.generalUser.cookieMaxAge})
                 .sendStatus(200);
         } else {
             logger.warn('User entered wrong password. password entered: ' + password);

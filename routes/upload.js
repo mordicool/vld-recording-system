@@ -15,7 +15,7 @@ module.exports = router;
 /********************************************************************************************/
 
 function uploadFile(req, res) {
-    if (req.cookies.password !== config.authentication.regularUser.cookieValue) {
+    if (req.cookies.password !== config.authentication.generalUser.cookieValue) {
         logger.warn('Did not upload the file, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {

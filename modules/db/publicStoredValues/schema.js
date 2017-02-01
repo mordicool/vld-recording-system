@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var publicStoredValuesSchema = mongoose.Schema({
     name: String,
     value: String
-});
+}, { collection: 'publicStoredValues' });
 
 var publicStoredValuesModel = mongoose.model('publicStoredValues', publicStoredValuesSchema);
 

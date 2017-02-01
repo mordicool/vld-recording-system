@@ -4,7 +4,6 @@
 
 var config = require('../../config');
 var logger = require('../logger');
-var mongoose = require('mongoose');
 var q = require('q');
 
 var dbConfig = config.db;
@@ -21,25 +20,17 @@ module.exports = {
 
 function connect() {
     var deferred = q.defer();
-    mongoose.connect(url, function (error) {
-        if (error) {
-            logger.error('Connection to db failed. Error: ' + error);
-            deferred.reject();
-        } else {
-            deferred.resolve();
-        }
-    });
 
-    var db = mongoose.connection;
-    db.on('error', function (error) {
+    var db = require('mongoose');
+    db.createConnection(url);
+    db.connection.on('error', function (error) {
         logger.error('An error occurred in connection to db. Error: ' + error);
     });
+    deferred.resolve(db);
 
     return deferred.promise;
 }
 
-function disconnect() {
-    var deferred = q.defer();
-    mongoose.disconnect(deferred.resolve);
-    return deferred.promise;
+function disconnect(db) {
+    db.disconnect();
 }

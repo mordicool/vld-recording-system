@@ -7,7 +7,7 @@ var configuration = {
         port: 8000
     },
     authentication: {
-        regularUser: {
+        generalUser: {
             cookieValue: 'U7+LUL@?{zeW"e=n',
             cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
