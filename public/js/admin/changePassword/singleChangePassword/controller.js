@@ -2,10 +2,11 @@
  * Created by מרדכי on 20 ינואר 2017.
  */
 
-app.controller('singleChangePasswordController', ['$scope', '$http', function ($scope, $http) {
-
+app.controller('singleChangePasswordController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
     $scope.newPassword = '';
     $scope.newPasswordConfirm = '';
+    $scope.isError = false;
+    $scope.errorMessage = '';
 
     $scope.changePassword = function () {
         if (validatePassword()) {
@@ -48,6 +49,11 @@ app.controller('singleChangePasswordController', ['$scope', '$http', function ($
     function setError(message) {
         $scope.isError = true;
         $scope.errorMessage = message;
+
+        $timeout(function () {
+            $scope.isError = false;
+            $scope.errorMessage = '';
+        }, 3000);
     }
 
 }]);

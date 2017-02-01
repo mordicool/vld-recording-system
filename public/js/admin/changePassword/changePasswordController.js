@@ -7,7 +7,4 @@ app.controller('changePassword', ['$scope', '$http', function ($scope, $http) {
     $http.get('data/userTypes.json').then(function (response) {
         $scope.userTypes = response.data;
     });
-
-    $scope.isError = false;
-    $scope.errorMessage = '';
 }]);

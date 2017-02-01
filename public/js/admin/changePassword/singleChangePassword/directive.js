@@ -7,9 +7,7 @@ app.directive('singleChangePassword', function () {
         restrict: 'E',
         templateUrl: 'js/admin/changePassword/singleChangePassword/partial.html',
         scope: {
-            userType: '=',
-            isError: '=',
-            errorMessage: '='
+            userType: '='
         },
         controller: 'singleChangePasswordController'
     };
