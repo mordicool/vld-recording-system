@@ -23,8 +23,7 @@ var configuration = {
     db: {
         user: 'aacc45e82c9385cbeb60aeb83be1f9a8',
         password: 'wEinbi0m',
-        host: '32-1a.mongo.evennode.com',
-        port: 27017,
+        host: '32-1a.mongo.evennode.com:27017,32-1b.mongo.evennode.com:27017',
         dbName: 'aacc45e82c9385cbeb60aeb83be1f9a8'
     },
     uploadsFolder: 'uploads/',
