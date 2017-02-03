@@ -16,23 +16,6 @@ module.exports = {
 function getPasswords() {
     return sharedDbQueries.getAllDocumentsBySchema(schema);
 }
-
 function changePassword(userName, newPassword) {
-    var deferred = q.defer();
-    dbConnection.connect().then(function (db) {
-        schema.findOne({name: userName}, function (err, user) {
-            user.password = newPassword;
-            user.save(function (error) {
-                if (error) {
-                    logger.error('Error while changing password of user %s.', userName);
-                    deferred.reject(error);
-                } else {
-                    logger.info('Changed ' + userName + ' password successfully; New password: ' + newPassword);
-                    deferred.resolve();
-                }
-                dbConnection.disconnect(db);
-            });
-        });
-    });
-    return deferred.promise;
+    return sharedDbQueries.editDocumentByName(schema, userName, 'password', newPassword);
 }

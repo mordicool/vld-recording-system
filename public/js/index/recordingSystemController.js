@@ -10,7 +10,7 @@ app.controller('recordingSystemController', [
     'config',
     function ($scope, $http, uploadFileService, recordingPackageBuilderService, config) {
     $http.get('/getLecturers').then(function (response) {
-        $scope.lecturers = response.data.lecturers.sort();
+        $scope.lecturers = response.data;
         $scope.recordingLecturer = 'אחר';
     });
     $scope.chooseFolderText = config.strings.chooseFolderText;

@@ -20,10 +20,10 @@ function updateTree(req, res) {
         logger.warn('Did not change tree, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {
-        var newTree = JSON.stringify(req.body.data);
-        
+        var newTree = req.body.data;
         api.changeTree(newTree)
             .then(function () {
+                logger.info('Tree changed successfully.');
                 res.sendStatus(200);
             })
             .fail(function () {

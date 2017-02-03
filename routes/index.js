@@ -40,7 +40,10 @@ function serveIndexPage(req, res) {
 }
 
 function serveTree(req, res) {
-    if (req.cookies.password !== config.authentication.generalUser.cookieValue) {
+    var validPasswords = [];
+    validPasswords.push(config.authentication.generalUser.cookieValue);
+    validPasswords.push(config.authentication.adminUser.cookieValue);
+    if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve tree, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {
@@ -55,13 +58,16 @@ function serveTree(req, res) {
 }
 
 function serveLecturers(req, res) {
-    if (req.cookies.password !== config.authentication.generalUser.cookieValue) {
+    var validPasswords = [];
+    validPasswords.push(config.authentication.generalUser.cookieValue);
+    validPasswords.push(config.authentication.adminUser.cookieValue);
+    if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve lecturers, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {
         api.getLecturers()
             .then(function (lecturersDocument) {
-                res.status(200).json(lecturersDocument.value);
+                res.status(200).json(lecturersDocument.value.sort());
             })
             .fail(function () {
                 res.sendStatus(500);

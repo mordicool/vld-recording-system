@@ -6,12 +6,7 @@ var config = require('../../config');
 var logger = require('../logger');
 var mongoose = require('mongoose');
 var q = require('q');
-
-var dbConfig = config.db;
-var url = 'mongodb://' + dbConfig.user + ':' +
-    dbConfig.password + '@' +
-    dbConfig.host + '/' +
-    dbConfig.dbName;
+mongoose.Promise = q.Promise;
 
 module.exports = {
     connect: connect,
@@ -19,17 +14,26 @@ module.exports = {
 };
 
 function connect() {
-    var deferred = q.defer();
-
-    var db = mongoose.createConnection(url);
-    db.on('error', function (error) {
-        logger.error('An error occurred in connection to db. Error: ' + error);
+    var db = mongoose.connection;
+    db.on('connected', function () {
+        logger.debug('Mongoose default connection open to ' + config.db.url);
     });
-    deferred.resolve(db);
+    db.on('error',function (err) {
+        logger.error('Mongoose default connection error: ' + err);
+    });
+    db.on('disconnected', function () {
+        logger.debug('Mongoose default connection disconnected');
+    });
+    process.on('SIGINT', function() {
+        db.close(function () {
+            logger.debug('Mongoose default connection disconnected through app termination');
+            process.exit(0);
+        });
+    });
 
-    return deferred.promise;
+    mongoose.connect(config.db.url);
 }
 
-function disconnect(db) {
-    db.disconnect();
+function disconnect() {
+    mongoose.disconnect();
 }

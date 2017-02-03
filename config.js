@@ -2,7 +2,7 @@
  * Created by מרדכי on 30 יוני 2016.
  */
 
-var configuration = {
+var config = {
     server: {
         port: 8000
     },
@@ -24,7 +24,8 @@ var configuration = {
         user: 'aacc45e82c9385cbeb60aeb83be1f9a8',
         password: 'wEinbi0m',
         host: '32-1a.mongo.evennode.com:27017,32-1b.mongo.evennode.com:27017',
-        dbName: 'aacc45e82c9385cbeb60aeb83be1f9a8'
+        dbName: 'aacc45e82c9385cbeb60aeb83be1f9a8',
+        replicaSet: 'eusbg1'
     },
     uploadsFolder: 'uploads/',
     downloadsFolder: 'downloads/',
@@ -51,4 +52,9 @@ var configuration = {
     }
 };
 
-module.exports = configuration;
+config.db.url = 'mongodb://' +
+    config.db.user + ':' + config.db.password + '@' +
+    config.db.host + '/' + config.db.dbName +
+    '?replicaSet=' + config.db.replicaSet;
+
+module.exports = config;
