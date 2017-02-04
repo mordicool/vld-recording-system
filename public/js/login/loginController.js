@@ -2,7 +2,7 @@
  * Created by מרדכי on 02 ינואר 2017.
  */
 
-app.controller('loginController', ['$scope', '$http', function ($scope, $http) {
+app.controller('loginController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
     $scope.password = '';
     $scope.isError = false;
 
@@ -21,6 +21,10 @@ app.controller('loginController', ['$scope', '$http', function ($scope, $http) {
                 if (response.status == 400) {
                     $scope.isError = true;
                     $scope.password = '';
+
+                    $timeout(function () {
+                        $scope.isError = false;
+                    }, 3000);
                 }
             });
     };
