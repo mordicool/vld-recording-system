@@ -2,12 +2,12 @@
  * Created by מרדכי on 06 ינואר 2017.
  */
 
+var api = require('../../modules/db/publicStoredValues/api');
 var config = require('../../config');
-var express = require('express');
 var fs = require('fs');
 var logger = require('../../modules/logger');
 var path = require('path');
-var router = express.Router();
+var router = require('express').Router();
 
 router.post('/updateTree', updateTree);
 
@@ -20,10 +20,14 @@ function updateTree(req, res) {
         logger.warn('Did not change tree, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {
-        var stringData = JSON.stringify(req.body.data);
-        fs.writeFileSync(path.join(__dirname, '../../public/data/jsTree.json'), stringData);
-
-        logger.info('Tree changed successfully.');
-        res.sendStatus(200);
+        var newTree = req.body.data;
+        api.changeTree(newTree)
+            .then(function () {
+                logger.info('Tree changed successfully.');
+                res.sendStatus(200);
+            })
+            .fail(function () {
+                res.sendStatus(500);
+            })
     }
 }

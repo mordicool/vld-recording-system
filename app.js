@@ -5,6 +5,7 @@
 var bodyParser = require('body-parser');
 var config = require('./config');
 var cookieParser = require('cookie-parser');
+var dbConnection = require('./modules/db/dbConnection');
 var logger = require('./modules/logger');
 var router = require('./routes');
 var express = require('express');
@@ -19,3 +20,5 @@ var port = process.env.PORT || config.server.port;
 app.listen(port, '0.0.0.0', function () {
     logger.info('Server is listening on port ' + port);
 });
+
+dbConnection.connect();

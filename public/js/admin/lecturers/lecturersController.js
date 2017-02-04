@@ -4,8 +4,8 @@
 
 app.controller('lecturers', ['$scope', '$http', function ($scope, $http) {
     $scope.newLecturer = '';
-    $http.get('data/lecturers.json').then(function (response) {
-        $scope.lecturers = response.data.lecturers.sort();
+    $http.get('/getLecturers').then(function (response) {
+        $scope.lecturers = response.data;
         $scope.recordingLecturer = 'אחר';
     });
     $scope.isError = false;

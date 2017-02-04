@@ -4,11 +4,10 @@
 
 var config = require('../config');
 var downloaderHandler = require('../modules/downloadFile/downloaderHandler');
-var express = require('express');
 var logger = require('../modules/logger');
 var path = require('path');
 var recordingsTreeGenerator = require('../modules/downloadFile/recordingsTreeGenerator');
-var router = express.Router();
+var router = require('express').Router();
 var S3FS = require('../modules/s3fsImplementation');
 
 router.get('/', serveRecordingsViewPage);
@@ -21,7 +20,7 @@ module.exports = router;
 
 function serveRecordingsViewPage(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.regularUser.cookieValue);
+    validPasswords.push(config.authentication.generalUser.cookieValue);
     validPasswords.push(config.authentication.inspectorUser.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
@@ -34,7 +33,7 @@ function serveRecordingsViewPage(req, res) {
 
 function getRecordingsTree(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.regularUser.cookieValue);
+    validPasswords.push(config.authentication.generalUser.cookieValue);
     validPasswords.push(config.authentication.inspectorUser.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
@@ -50,7 +49,7 @@ function getRecordingsTree(req, res) {
 
 function downloadFile(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.regularUser.cookieValue);
+    validPasswords.push(config.authentication.generalUser.cookieValue);
     validPasswords.push(config.authentication.inspectorUser.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');

@@ -9,8 +9,8 @@ app.controller('recordingSystemController', [
     'recordingPackageBuilderService',
     'config',
     function ($scope, $http, uploadFileService, recordingPackageBuilderService, config) {
-    $http.get('data/lecturers.json').then(function (response) {
-        $scope.lecturers = response.data.lecturers.sort();
+    $http.get('/getLecturers').then(function (response) {
+        $scope.lecturers = response.data;
         $scope.recordingLecturer = 'אחר';
     });
     $scope.chooseFolderText = config.strings.chooseFolderText;

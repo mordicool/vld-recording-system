@@ -2,12 +2,12 @@
  * Created by מרדכי on 30 יוני 2016.
  */
 
-var configuration = {
+var config = {
     server: {
         port: 8000
     },
     authentication: {
-        regularUser: {
+        generalUser: {
             cookieValue: 'U7+LUL@?{zeW"e=n',
             cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
@@ -19,6 +19,13 @@ var configuration = {
             cookieValue: '2]Q%u_r<8DpbE]Fb',
             cookieMaxAge: 20 * 60 * 1000 // 20 minutes
         }
+    },
+    db: {
+        user: 'aacc45e82c9385cbeb60aeb83be1f9a8',
+        password: 'wEinbi0m',
+        host: '32-1a.mongo.evennode.com:27017,32-1b.mongo.evennode.com:27017',
+        dbName: 'aacc45e82c9385cbeb60aeb83be1f9a8',
+        replicaSet: 'eusbg1'
     },
     uploadsFolder: 'uploads/',
     downloadsFolder: 'downloads/',
@@ -45,4 +52,9 @@ var configuration = {
     }
 };
 
-module.exports = configuration;
+config.db.url = 'mongodb://' +
+    config.db.user + ':' + config.db.password + '@' +
+    config.db.host + '/' + config.db.dbName +
+    '?replicaSet=' + config.db.replicaSet;
+
+module.exports = config;
