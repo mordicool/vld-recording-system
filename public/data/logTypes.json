@@ -33,7 +33,7 @@
     "level": "INFO",
     "name": "user password changed",
     "hebrewName": "שינוי סיסמת העלאה + הורדה",
-    "regex": "^Changed user password successfully; New password: (.*)$"
+    "regex": "^Changed general password successfully; New password: (.*)$"
   },
   {
     "level": "INFO",

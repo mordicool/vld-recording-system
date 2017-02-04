@@ -6,7 +6,6 @@ var config = require('../../config');
 var fs = require('fs');
 var q = require('q');
 var logger = require('./../logger');
-var path = require('path');
 var s3fsImplementation = require('./../s3fsImplementation');
 
 function upload(filePath) {
@@ -18,7 +17,7 @@ function upload(filePath) {
     } else {
         var fileStream = fs.createReadStream(filePath);
         var fileDirectory = filePath.slice(filePath.indexOf(config.uploadsFolder) + config.uploadsFolder.length);
-        var uploadUrl = config.amazonModule.prefix + fileDirectory.split('-').join('/');
+        var uploadUrl = config.amazonModule.prefix + fileDirectory.split(config.temporaryCharJoin).join('/');
 
         s3fsImplementation.writeFile(uploadUrl, fileStream)
             .then(function () {

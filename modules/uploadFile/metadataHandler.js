@@ -21,11 +21,11 @@ function addMetadataToFile(file, filePath) {
         var extensionName = path.extname(filePath).toLowerCase();
 
         var fileDirectory = filePath.slice(filePath.indexOf(config.uploadsFolder) + config.uploadsFolder.length);
-        var realFilePath = fileDirectory.split('-').join('/');
+        var realFilePath = fileDirectory.split(config.temporaryCharJoin).join('/');
 
         nextTrackNumberProvider.getNextTrackNumberInFolder(path.dirname(realFilePath), path.basename(realFilePath))
             .then(function (trackNumber) {
-                var newFilePath = path.dirname(filePath) + '/' + path.dirname(realFilePath).split('/').join('-') + '-' + trackNumber + '. ' + path.basename(realFilePath);
+                var newFilePath = path.dirname(filePath) + '/' + path.dirname(realFilePath).split('/').join(config.temporaryCharJoin) + config.temporaryCharJoin + trackNumber + '. ' + path.basename(realFilePath);
                 fs.renameSync(filePath, newFilePath);
                 filePath = newFilePath;
 

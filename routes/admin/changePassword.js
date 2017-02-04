@@ -39,7 +39,7 @@ function changePasswordByUserType(req, res, userType) {
         } else {
             api.changePassword(userType, newPassword)
                 .then(function () {
-                    logger.info('Changed ' + userName + ' password successfully; New password: ' + newPassword);
+                    logger.info('Changed ' + userType + ' password successfully; New password: ' + newPassword);
                     res.sendStatus(200);
                 })
                 .fail(function (error) {

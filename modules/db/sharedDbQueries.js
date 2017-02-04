@@ -40,15 +40,20 @@ function getDocumentByName(schema, name) {
 function editDocumentByName(schema, name, propName, newDataForPropName) {
     var deferred = q.defer();
     schema.findOne({name: name}, function (error, document) {
-        document[propName] = newDataForPropName;
-        document.save(function (error) {
-            if (error) {
-                logger.error('Error while editing document of $s.', name);
-                deferred.reject(error);
-            } else {
-                deferred.resolve();
-            }
-        });
+        if (error) {
+            logger.error('Error while receiving a document of $s.', name);
+            deferred.reject(error);
+        } else {
+            document[propName] = newDataForPropName;
+            document.save(function (error) {
+                if (error) {
+                    logger.error('Error while editing document of $s.', name);
+                    deferred.reject(error);
+                } else {
+                    deferred.resolve();
+                }
+            });
+        }
     });
     return deferred.promise;
 }

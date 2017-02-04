@@ -29,6 +29,7 @@ var config = {
     },
     uploadsFolder: 'uploads/',
     downloadsFolder: 'downloads/',
+    temporaryCharJoin: '~!@#',
     logger: {
         debugLogFileName: 'logs/debugLog.log',
         infoLogFileName: 'logs/infoLog.log',
