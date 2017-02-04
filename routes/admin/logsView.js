@@ -23,7 +23,6 @@ function serveLogsFromDb(req, res) {
                 for (var i=0; i<logs.length; i++) {
                     logs[i]._doc.level = logs[i].level.levelStr;
                 }
-
                 logger.debug('Served logs to admin page.');
                 res.status(200).json(logs);
             })

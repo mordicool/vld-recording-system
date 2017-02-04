@@ -28,7 +28,7 @@ function getDocumentByName(schema, name) {
     var deferred = q.defer();
     schema.findOne({name: name}, function (error, document) {
         if (error) {
-            logger.error('Error while receiving documents from db. Error: %s', JSON.stringify(error));
+            logger.error('Error while receiving document $s from db. Error: %s', name, JSON.stringify(error));
             deferred.reject(error);
         } else {
             deferred.resolve(document);
