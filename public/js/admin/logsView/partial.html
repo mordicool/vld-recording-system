@@ -1,5 +1,4 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
     <div class="row small-margin">
         <div class="pull-left">
             <button class="btn btn-deafult btn-sm" ng-click="chooseAll()">בחר הכל</button>
@@ -52,8 +51,8 @@
                 <th class="text-center">פירוט</th>
             </tr>
             <tr ng-repeat="log in logs.filter(logsFilter) | orderBy: time : true track by $index" ng-class="transformLogType(log.level)">
-                <td>{{logs.length - $index}}</td>
-                <td>{{log.time}}</td>
+                <td class="text-center">{{logs.length - $index}}</td>
+                <td class="text-center">{{log.time | logTimeView}}</td>
                 <td>{{log.type.hebrewName}}</td>
                 <td>{{log.extraMessageData}}</td>
             </tr>
