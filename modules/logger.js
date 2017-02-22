@@ -12,33 +12,33 @@ log4js.configure({
             type: 'log4js-node-mongodb',
             connectionString: config.db.url
         },
-        {
-            type: 'logLevelFilter',
-            level: 'INFO',
-            appender: {
-                type: 'file',
-                filename: config.logger.infoLogFileName,
-                category: 'recordingSystem'
-            }
-        },
-        {
-            type: 'logLevelFilter',
-            level: 'DEBUG',
-            appender: {
-                type: 'file',
-                filename: config.logger.debugLogFileName,
-                category: 'recordingSystem'
-            }
-        },
-        {
-            type: 'logLevelFilter',
-            level: 'WARN',
-            appender: {
-                type: 'file',
-                filename: config.logger.warnLogFileName,
-                category: 'recordingSystem'
-            }
-        }
+        // {
+        //     type: 'logLevelFilter',
+        //     level: 'INFO',
+        //     appender: {
+        //         type: 'file',
+        //         filename: config.logger.infoLogFileName,
+        //         category: 'recordingSystem'
+        //     }
+        // },
+        // {
+        //     type: 'logLevelFilter',
+        //     level: 'DEBUG',
+        //     appender: {
+        //         type: 'file',
+        //         filename: config.logger.debugLogFileName,
+        //         category: 'recordingSystem'
+        //     }
+        // },
+        // {
+        //     type: 'logLevelFilter',
+        //     level: 'WARN',
+        //     appender: {
+        //         type: 'file',
+        //         filename: config.logger.warnLogFileName,
+        //         category: 'recordingSystem'
+        //     }
+        // }
     ]
 });
 
