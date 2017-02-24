@@ -11,6 +11,9 @@ app.controller('logsViewController', [
         function ($scope, $http, logAnalysisService, logInBetweenDatesValidator, dateFormatter) {
     $scope.originallogs = [];
     $scope.logs = [];
+    $scope.viewedLogs = function() {
+        return $scope.logs.filter($scope.logsFilter);
+    };
     $scope.logTypes = [];
     $scope.formattedDate = dateFormatter.format;
     var that = this;
@@ -47,6 +50,7 @@ app.controller('logsViewController', [
         }
     };
     $scope.searchByDate = function() {
+        if (!$scope.logViewStartDate || !$scope.logViewEndDate) return;
         $scope.logs = $scope.originalLogs.filter(function(log) {
             return logInBetweenDatesValidator.validate(log.time, $scope.logViewStartDate, $scope.logViewEndDate);
         });

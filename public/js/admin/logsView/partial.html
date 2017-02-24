@@ -53,8 +53,8 @@
                 <th class="text-center">אירוע</th>
                 <th class="text-center">פירוט</th>
             </tr>
-            <tr ng-repeat="log in logs.filter(logsFilter) | orderBy: time : true track by $index" ng-class="transformLogType(log.level)">
-                <td class="text-center">{{logs.length - $index}}</td>
+            <tr ng-repeat="log in viewedLogs() | orderBy: time : true track by $index" ng-class="transformLogType(log.level)">
+                <td class="text-center">{{viewedLogs().length - $index}}</td>
                 <td class="text-center">{{log.time | logTimeView}}</td>
                 <td>{{log.type.hebrewName}}</td>
                 <td>{{log.extraMessageData}}</td>
