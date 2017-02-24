@@ -2,16 +2,25 @@
  * Created by מרדכי on 23 ינואר 2017.
  */
 
-app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', function ($scope, $http, logAnalysisService) {
+app.controller('logsViewController', [
+        '$scope',
+        '$http',
+        'logAnalysisService',
+        'logInBetweenDatesValidator',
+        'dateFormatter',
+        function ($scope, $http, logAnalysisService, logInBetweenDatesValidator, dateFormatter) {
+    $scope.originallogs = [];
     $scope.logs = [];
     $scope.logTypes = [];
+    $scope.formattedDate = dateFormatter.format;
     var that = this;
 
     this.logsPromise = new Promise(function (resolve, reject) {
         $http.get('admin/logs').then(function (response) {
             if (response.status == 200) {
                 logAnalysisService.analyzeAll(response.data).then(function (analyzedLogs) {
-                    $scope.logs = analyzedLogs;
+                    $scope.originalLogs = analyzedLogs;
+                    $scope.logs = $scope.originalLogs;
                     resolve(analyzedLogs);
                 });
             }
@@ -23,17 +32,36 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
                 .filter(function (logType) {
                     return logType.name !== 'other';
                 }).map(function (logType) {
-                    return addDataOfLogTypes(logType, logs);
+                    logType = addNumberOfEachLogType(logType, logs);
+                    logType.isChecked = true;
+                    return logType;
                 });
             $scope.$apply();
         });
     });
-
     $scope.logsFilter = function (log) {
         for (var i = 0; i < $scope.logTypes.length; i++) {
             if ($scope.logTypes[i].name == log.type.name && $scope.logTypes[i].isChecked) {
                 return true;
             }
+        }
+    };
+    $scope.searchByDate = function() {
+        $scope.logs = $scope.originalLogs.filter(function(log) {
+            return logInBetweenDatesValidator.validate(log.time, $scope.logViewStartDate, $scope.logViewEndDate);
+        });
+        $scope.logTypes = $scope.logTypes.map(function (logType) {
+                return addNumberOfEachLogType(logType, $scope.logs);
+            });
+    };
+    $scope.chooseAll = function () {
+        for (var i = 0; i < $scope.logTypes.length; i++) {
+            $scope.logTypes[i].isChecked = true;
+        }
+    };
+    $scope.unchooseAll = function () {
+        for (var i = 0; i < $scope.logTypes.length; i++) {
+            $scope.logTypes[i].isChecked = false;
         }
     };
     $scope.transformLogType = function (level) {
@@ -50,18 +78,7 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
                 return '';
         }
     };
-    $scope.chooseAll = function () {
-        for (var i = 0; i < $scope.logTypes.length; i++) {
-            $scope.logTypes[i].isChecked = true;
-        }
-    };
-    $scope.unchooseAll = function () {
-        for (var i = 0; i < $scope.logTypes.length; i++) {
-            $scope.logTypes[i].isChecked = false;
-        }
-    };
-    
-    function addDataOfLogTypes(logType, logs) {
+    function addNumberOfEachLogType(logType, logs) {
         var logsCount = 0;
         for (var i = 0; i < logs.length; i++) {
             if (logs[i].type.name == logType.name) {
@@ -69,8 +86,6 @@ app.controller('logsViewController', ['$scope', '$http', 'logAnalysisService', f
             }
         }
         logType.numberOfLogs = logsCount;
-        logType.isChecked = true;
-
         return logType;
     }
 }]);

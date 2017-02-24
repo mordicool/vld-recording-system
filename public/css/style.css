@@ -67,3 +67,8 @@ h3 {
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     background-color: rgba(205, 242, 249, 0.42);
 }
+
+.dateSearch {
+    background-color: mintcream;
+    padding: .6em;
+}
