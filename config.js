@@ -7,15 +7,15 @@ var config = {
         port: 8000
     },
     authentication: {
-        generalUser: {
+        UPLOAD: {
             cookieValue: 'U7+LUL@?{zeW"e=n',
             cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
-        inspectorUser: {
+        DOWNLOAD: {
             cookieValue: '=A3ragUpe*Ej',
             cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
-        adminUser: {
+        ADMIN: {
             cookieValue: '2]Q%u_r<8DpbE]Fb',
             cookieMaxAge: 20 * 60 * 1000 // 20 minutes
         }
@@ -30,11 +30,11 @@ var config = {
     uploadsFolder: 'uploads/',
     downloadsFolder: 'downloads/',
     temporaryCharJoin: '~!@#',
-    logger: {
-        debugLogFileName: 'logs/debugLog.log',
-        infoLogFileName: 'logs/infoLog.log',
-        warnLogFileName: 'logs/warnLog.log'
-    },
+    // logger: {
+    //     debugLogFileName: 'logs/debugLog.log',
+    //     infoLogFileName: 'logs/infoLog.log',
+    //     warnLogFileName: 'logs/warnLog.log'
+    // },
     metadata: {
         applyModule: true,
         minimumTrackNumber: 1,

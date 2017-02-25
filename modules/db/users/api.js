@@ -2,9 +2,6 @@
  * Created by מרדכי on 30 ינואר 2017.
  */
 
-var dbConnection = require('../dbConnection');
-var logger = require('../../logger');
-var q = require('q');
 var schema = require('./schema');
 var sharedDbQueries = require('../sharedDbQueries');
 
