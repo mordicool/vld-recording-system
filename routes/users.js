@@ -16,21 +16,31 @@ module.exports = router;
 /********************************************************************************************/
 
 function login(req, res) {
+    var username = req.query.username;
     var password = req.query.password;
 
-    api.getPasswords().then(function (passwords) {
-        if (password == passwords[2].password) {
-            res.cookie('password', config.authentication.adminUser.cookieValue, {maxAge: config.authentication.adminUser.cookieMaxAge})
-                .sendStatus(200);
-        } else if(password == passwords[1].password) {
-            res.cookie('password', config.authentication.inspectorUser.cookieValue, {maxAge: config.authentication.inspectorUser.cookieMaxAge})
-                .sendStatus(205);
-        } else if(password == passwords[0].password) {
-            res.cookie('password', config.authentication.generalUser.cookieValue, {maxAge: config.authentication.generalUser.cookieMaxAge})
-                .sendStatus(200);
-        } else {
-            logger.warn('User entered wrong password. password entered: ' + password);
+    api.authenticateUser(username, password).then(function (userType) {
+        if (!userType) {
+            logger.warn('User entered wrong username or password. Username: ' + username + ', Password: ' + password);
             res.sendStatus(400);
+        } else {
+            let userConfig, status;
+            switch (userType) {
+                case "ADMIN":
+                    userConfig = config.authentication.ADMIN;
+                    status = 200;
+                    break;
+                case "UPLOAD":
+                    userConfig = config.authentication.UPLOAD;
+                    status = 200;
+                    break;
+                default:
+                case "DOWNLOAD":
+                    userConfig = config.authentication.DOWNLOAD;
+                    status = 205;
+                    break;
+            }
+            res.cookie('password', userConfig.cookieValue, {maxAge: userConfig.cookieMaxAge}).sendStatus(status);
         }
     });
 }
