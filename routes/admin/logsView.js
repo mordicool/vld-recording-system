@@ -14,7 +14,7 @@ module.exports = router;
 /********************************************************************************************/
 
 function serveLogsFromDb(req, res) {
-    if (req.cookies.password !== config.authentication.adminUser.cookieValue) {
+    if (req.cookies.password !== config.authentication.ADMIN.cookieValue) {
         logger.warn('Did not serve logs, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {

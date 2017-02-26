@@ -20,8 +20,8 @@ module.exports = router;
 
 function serveRecordingsViewPage(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.generalUser.cookieValue);
-    validPasswords.push(config.authentication.inspectorUser.cookieValue);
+    validPasswords.push(config.authentication.UPLOAD.cookieValue);
+    validPasswords.push(config.authentication.DOWNLOAD.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
         res.redirect('/');
@@ -33,8 +33,8 @@ function serveRecordingsViewPage(req, res) {
 
 function getRecordingsTree(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.generalUser.cookieValue);
-    validPasswords.push(config.authentication.inspectorUser.cookieValue);
+    validPasswords.push(config.authentication.UPLOAD.cookieValue);
+    validPasswords.push(config.authentication.DOWNLOAD.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
         res.redirect('/');
@@ -49,8 +49,8 @@ function getRecordingsTree(req, res) {
 
 function downloadFile(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.generalUser.cookieValue);
-    validPasswords.push(config.authentication.inspectorUser.cookieValue);
+    validPasswords.push(config.authentication.UPLOAD.cookieValue);
+    validPasswords.push(config.authentication.DOWNLOAD.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve recordings view page, do to non authenticated user. redirected to login page.');
         res.redirect('/');

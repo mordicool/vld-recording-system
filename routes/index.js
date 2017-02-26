@@ -26,10 +26,10 @@ module.exports = router;
 
 function serveIndexPage(req, res) {
     var password = req.cookies.password;
-    if (password == config.authentication.adminUser.cookieValue) {
+    if (password == config.authentication.ADMIN.cookieValue) {
         logger.debug('User entered admin page.');
         res.sendFile('public/pages/admin.html', {root: path.join(__dirname, '../')});
-    } else if(password == config.authentication.generalUser.cookieValue) {
+    } else if(password == config.authentication.UPLOAD.cookieValue) {
         logger.debug('User entered index page.');
         res.sendFile('public/pages/index.html', {root: path.join(__dirname, '../')});
     } else {

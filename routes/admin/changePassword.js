@@ -26,7 +26,7 @@ function changeAdminPassword(req, res) {
 }
 
 function changePasswordByUserType(req, res, userType) {
-    if (req.cookies.password !== config.authentication.adminUser.cookieValue) {
+    if (req.cookies.password !== config.authentication.ADMIN.cookieValue) {
         logger.warn('Did not change ' + userType + ' password, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
     } else {
