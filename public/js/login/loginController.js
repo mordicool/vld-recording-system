@@ -3,14 +3,16 @@
  */
 
 app.controller('loginController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+    $scope.username = '';
     $scope.password = '';
     $scope.isError = false;
 
     $scope.Login = function () {
+        var username = $scope.username;
         var password = $scope.password;
-        if (password == '') return;
+        if (password == ''|| username == '') return;
 
-        $http.get('users/login?password=' + password)
+        $http.get('users/login?password=' + password + '&username=' + username)
             .then(function (response) {
                 if (response.status == 200) {
                     location.reload();
@@ -20,6 +22,7 @@ app.controller('loginController', ['$scope', '$http', '$timeout', function ($sco
             }, function (response) {
                 if (response.status == 400) {
                     $scope.isError = true;
+                    $scope.username = '';
                     $scope.password = '';
 
                     $timeout(function () {

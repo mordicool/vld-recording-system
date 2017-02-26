@@ -41,8 +41,8 @@ function serveIndexPage(req, res) {
 
 function serveTree(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.generalUser.cookieValue);
-    validPasswords.push(config.authentication.adminUser.cookieValue);
+    validPasswords.push(config.authentication.UPLOAD.cookieValue);
+    validPasswords.push(config.authentication.ADMIN.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve tree, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);
@@ -59,8 +59,8 @@ function serveTree(req, res) {
 
 function serveLecturers(req, res) {
     var validPasswords = [];
-    validPasswords.push(config.authentication.generalUser.cookieValue);
-    validPasswords.push(config.authentication.adminUser.cookieValue);
+    validPasswords.push(config.authentication.UPLOAD.cookieValue);
+    validPasswords.push(config.authentication.ADMIN.cookieValue);
     if (validPasswords.indexOf(req.cookies.password) == -1) {
         logger.warn('Did not serve lecturers, do to non authenticated user. redirected to login page.');
         res.sendStatus(400);

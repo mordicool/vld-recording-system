@@ -32,7 +32,8 @@
 <main class="container-fluid" style="margin-top: 10em" ng-controller="loginController" ng-cloak="true">
     <div class="col-xs-12 col-sm-12 col-md-2 col-md-offset-5 col-lg-2 col-lg-offset-5">
         <h1 class="text-center" style="margin-bottom: 1em">כניסה</h1>
-        <input type="password" class="form-control text-center" placeholder="הכנס סיסמא" ng-model="password" ng-keyup="$event.keyCode == 13 && Login()">
+        <input type="text" class="form-control text-center" placeholder="שם משתמש" ng-model="username" ng-keyup="$event.keyCode == 13 && Login()">
+        <input type="password" style="margin-top: .3em;" class="form-control text-center" placeholder="סיסמא" ng-model="password" ng-keyup="$event.keyCode == 13 && Login()">
         <div class="input-group col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: .7em;">
             <div class="alert alert-danger text-center" ng-show="isError" role="alert">הסיסמא שגויה, אנא הזן סיסמא נכונה</div>
         </div>
