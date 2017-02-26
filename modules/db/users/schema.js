@@ -7,7 +7,8 @@ var mongoose = require('mongoose');
 var usersSchema = mongoose.Schema({
     username: String,
     password: String,
-    type: String
+    type: String,
+    numberOfEntries: Number
 }, { collection: 'user' });
 
 var usersModel = mongoose.model('users', usersSchema);

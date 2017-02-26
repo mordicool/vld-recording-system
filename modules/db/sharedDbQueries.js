@@ -9,6 +9,7 @@ module.exports = {
     getAllDocumentsBySchema,
     getDocumentByName,
     authenticateUser,
+    logUsernameEntry,
     editDocumentByName
 };
 
@@ -49,6 +50,18 @@ function authenticateUser(schema, username, password) {
         }
     });
     return deferred.promise;
+}
+
+function logUsernameEntry(schema, username) {
+    schema.findOne({username}, function (error, document) {
+        if (error) {
+            logger.error('Error while finding username for logging entry to db. Username: $s. Error: %s', username, JSON.stringify(error));
+            deferred.reject(error);
+        } else {
+            document.numberOfEntries = document.numberOfEntries + 1;
+            document.save();
+        }
+    });
 }
 
 function editDocumentByName(schema, name, propName, newDataForPropName) {

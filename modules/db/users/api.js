@@ -7,8 +7,13 @@ var sharedDbQueries = require('../sharedDbQueries');
 
 module.exports = {
     authenticateUser,
+    logUsernameEntry,
     changePassword
 };
+
+function logUsernameEntry(username) {
+    sharedDbQueries.logUsernameEntry(schema, username);
+}
 
 function authenticateUser(username, password) {
     return sharedDbQueries.authenticateUser(schema, username, password)

@@ -28,7 +28,7 @@ app.service('logAnalysisService', ['$http', function ($http) {
                     time: time,
                     level: level,
                     message: message,
-                    extraMessageData: RegExp(logType.regex).exec(message).splice(1).join(','),
+                    extraMessageData: RegExp(logType.regex).exec(message).splice(1).join(', '),
                     type: logType
                 });
             });

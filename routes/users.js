@@ -41,6 +41,7 @@ function login(req, res) {
                     break;
             }
             res.cookie('password', userConfig.cookieValue, {maxAge: userConfig.cookieMaxAge}).sendStatus(status);
+            api.logUsernameEntry(username);
         }
     });
 }

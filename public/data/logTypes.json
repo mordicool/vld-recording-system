@@ -87,7 +87,7 @@
     "level": "WARN",
     "name": "bad password entered",
     "hebrewName": "הוזנה סיסמה שגויה",
-    "regex": "^User entered wrong password. password entered: (.*)$"
+    "regex": "^User entered wrong username or password. Username: (.*), Password: (.*)$"
   },
   {
     "level": "~~~",
