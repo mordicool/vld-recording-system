@@ -6,9 +6,10 @@ var logger = require('../logger');
 var q = require('q');
 
 module.exports = {
-    getAllDocumentsBySchema: getAllDocumentsBySchema,
-    getDocumentByName: getDocumentByName,
-    editDocumentByName: editDocumentByName
+    getAllDocumentsBySchema,
+    getDocumentByName,
+    authenticateUser,
+    editDocumentByName
 };
 
 function getAllDocumentsBySchema(schema) {
@@ -29,6 +30,19 @@ function getDocumentByName(schema, name) {
     schema.findOne({name: name}, function (error, document) {
         if (error) {
             logger.error('Error while receiving document $s from db. Error: %s', name, JSON.stringify(error));
+            deferred.reject(error);
+        } else {
+            deferred.resolve(document);
+        }
+    });
+    return deferred.promise;
+}
+
+function authenticateUser(schema, username, password) {
+    var deferred = q.defer();
+    schema.findOne({username, password}, function (error, document) {
+        if (error) {
+            logger.error('Error while authenticate user from db. Username: $s ; Password: %s. Error: %s', username, password, JSON.stringify(error));
             deferred.reject(error);
         } else {
             deferred.resolve(document);

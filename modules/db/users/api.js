@@ -6,12 +6,19 @@ var schema = require('./schema');
 var sharedDbQueries = require('../sharedDbQueries');
 
 module.exports = {
-    getPasswords: getPasswords,
-    changePassword: changePassword
+    authenticateUser,
+    changePassword
 };
 
-function getPasswords() {
-    return sharedDbQueries.getAllDocumentsBySchema(schema);
+function authenticateUser(username, password) {
+    return sharedDbQueries.authenticateUser(schema, username, password)
+        .then((document) => {
+            if (document) {
+                return document.type;
+            } else {
+                return false;
+            }
+        });
 }
 function changePassword(userName, newPassword) {
     return sharedDbQueries.editDocumentByName(schema, userName, 'password', newPassword);
