@@ -3,13 +3,13 @@
  */
 
 var lecturersRoute = require('./lecturers');
-var changePasswordRoute = require('./changePassword');
+var userManagement = require('./userManagement');
 var jstreeRoute = require('./jstree');
 var logsViewRoute = require('./logsView');
 var router = require('express').Router();
 
 router.use('/lecturers', lecturersRoute);
-router.use('/changePassword', changePasswordRoute);
+router.use('/userManagement', userManagement);
 router.use('/jstree', jstreeRoute);
 router.use('/logs', logsViewRoute);
 

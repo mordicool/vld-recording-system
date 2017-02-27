@@ -8,8 +8,6 @@ var q = require('q');
 module.exports = {
     getAllDocumentsBySchema,
     getDocumentByName,
-    authenticateUser,
-    logUsernameEntry,
     editDocumentByName
 };
 
@@ -28,7 +26,7 @@ function getAllDocumentsBySchema(schema) {
 
 function getDocumentByName(schema, name) {
     var deferred = q.defer();
-    schema.findOne({name: name}, function (error, document) {
+    schema.findOne({name}, function (error, document) {
         if (error) {
             logger.error('Error while receiving document $s from db. Error: %s', name, JSON.stringify(error));
             deferred.reject(error);
@@ -41,7 +39,7 @@ function getDocumentByName(schema, name) {
 
 function editDocumentByName(schema, name, propName, newDataForPropName) {
     var deferred = q.defer();
-    schema.findOne({name: name}, function (error, document) {
+    schema.findOne({name}, function (error, document) {
         if (error) {
             logger.error('Error while receiving a document of $s.', name);
             deferred.reject(error);
