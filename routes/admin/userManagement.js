@@ -44,8 +44,10 @@ function changePassword(req, res) {
 }
 
 function createUser(req, res) {
-    const cookie = req.cookies.password,
-        {username, password, type} = req.query;
+    const cookie = req.cookies.password;
+    let {username, password, type} = req.query;
+    if (type !== 'UPLOAD' || type !== 'ADMIN')
+        type = 'DOWNLOAD';
     if (cookie == adminCookie) {
         if (!passwordValidator(password)) {
             logger.warn('Invalid password. Username: ' + username + '; New password: ' + password + '; Type: ' + type);
