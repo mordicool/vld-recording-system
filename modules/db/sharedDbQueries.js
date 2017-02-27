@@ -39,31 +39,6 @@ function getDocumentByName(schema, name) {
     return deferred.promise;
 }
 
-function authenticateUser(schema, username, password) {
-    var deferred = q.defer();
-    schema.findOne({username, password}, function (error, document) {
-        if (error) {
-            logger.error('Error while authenticate user from db. Username: $s ; Password: %s. Error: %s', username, password, JSON.stringify(error));
-            deferred.reject(error);
-        } else {
-            deferred.resolve(document);
-        }
-    });
-    return deferred.promise;
-}
-
-function logUsernameEntry(schema, username) {
-    schema.findOne({username}, function (error, document) {
-        if (error) {
-            logger.error('Error while finding username for logging entry to db. Username: $s. Error: %s', username, JSON.stringify(error));
-            deferred.reject(error);
-        } else {
-            document.numberOfEntries = document.numberOfEntries + 1;
-            document.save();
-        }
-    });
-}
-
 function editDocumentByName(schema, name, propName, newDataForPropName) {
     var deferred = q.defer();
     schema.findOne({name: name}, function (error, document) {
