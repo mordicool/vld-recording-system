@@ -9,6 +9,7 @@ const logger = require('../../modules/logger');
 const passwordValidator = require('../../modules/passwordValidator');
 const router = require('express').Router();
 
+router.get('/', getAllUsers);
 router.get('/changePassword', changePassword);
 router.get('/createUser', createUser);
 router.get('/deleteUser', deleteUser);
@@ -16,6 +17,23 @@ router.get('/deleteUser', deleteUser);
 module.exports = router;
 
 /********************************************************************************************/
+
+function getAllUsers(req, res) {
+    const cookie = req.cookies.password;
+    if (cookie == adminCookie) {
+        api.getAllUsers()
+            .then((documents) => {
+                logger.info('Served all users names.');
+                res.status(200).json(documents.map(doc => doc.name));
+            }).fail((error) => {
+            logger.error('Error while serving all user names. Error: ' + JSON.stringify(error));
+            res.sendStatus(500);
+        });
+    } else {
+        logger.warn('Invalid cookie sent. cookie: ' + cookie);
+        res.sendStatus(400);
+    }
+}
 
 function changePassword(req, res) {
     const cookie = req.cookies.password,

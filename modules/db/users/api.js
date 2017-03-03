@@ -8,6 +8,7 @@ const schema = require('./schema');
 const sharedDbQueries = require('../sharedDbQueries');
 
 module.exports = {
+    getAllUsers,
     authenticateUser,
     logUsernameEntry,
     changePassword,
@@ -35,6 +36,10 @@ function authenticateUser(name, password) {
                 return false;
             }
         });
+}
+
+function getAllUsers() {
+    return sharedDbQueries.getAllDocumentsBySchema(schema);
 }
 
 function changePassword(username, newPassword) {
