@@ -6,7 +6,7 @@ app.directive('changePassword', function () {
     return {
         restrict: 'E',
         scope: {},
-        templateUrl: 'js/admin/changePassword/changePasswordPartial.html',
+        templateUrl: 'js/admin/changePassword/partial.html',
         controller: 'changePassword'
     };
 });
