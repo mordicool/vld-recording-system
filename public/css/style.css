@@ -32,7 +32,8 @@ h3 {
 }
 
 .small-margin {
-    margin: .8em 0;
+    margin-top: .8em;
+    margin-bottom: .8em;
 }
 
 ::-webkit-scrollbar {
