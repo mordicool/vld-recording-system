@@ -2,9 +2,16 @@
     <div class="panel-heading">שינוי סיסמא</div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-                <div ng-repeat="userType in userTypes track by $index">
-                    <single-change-password user-type="userType"></single-change-password>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 pull-left">
+                <div class="list-group my-username-group">
+                    <a class="list-group-item" ng-repeat="username in usernames track by $index">
+                        <button class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-sm"><span class="glyphicon glyphicon-edit"></span></button>
+                        <span class="col-xs-2 col-sm-2 col-md-2 col-lg-2 pull-left">{{username}}</span>
+                        <span class="col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left">
+                            <input class="form-control rounded-input" type="text" placeholder="סיסמא חדשה">
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>

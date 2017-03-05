@@ -72,3 +72,8 @@ h3 {
     background-color: mintcream;
     padding: .6em;
 }
+
+.my-username-group {
+    overflow: auto;
+    height: 15em;
+}
