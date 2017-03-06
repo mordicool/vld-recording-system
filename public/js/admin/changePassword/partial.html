@@ -20,9 +20,12 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 thumbnail" style="height: 15em;">
                 <h5>צור משתמש חדש</h5>
-                <input class="form-control small-margin rounded-input col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" type="text" placeholder="שם משתמש">
-                <input class="form-control small-margin rounded-input col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" type="password" placeholder="סיסמא">
-                <button class="btn btn-success small-margin col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                <input class="form-control rounded-input col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" type="text" placeholder="שם משתמש" ng-model="newUsername">
+                <input class="form-control rounded-input col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" type="password" placeholder="סיסמא" ng-model="newUserPassword">
+                <select class="form-control rounded-input col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" ng-model="newUserType">
+                    <option class="text-center" ng-repeat="type in userTypes" ng-cloak>{{type}}</option>
+                </select>
+                <button class="btn btn-success small-margin col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" ng-click="createNewUser()"><span class="glyphicon glyphicon-thumbs-up"></span></button>
             </div>
         </div>
     </div>
