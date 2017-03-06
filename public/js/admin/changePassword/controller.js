@@ -42,4 +42,18 @@ app.controller('changePassword', ['$scope', '$http', function ($scope, $http) {
             alert('פרטי המשתמש בהוזנו אינם מספקים.\nאין ליצור משתמש עם שם הקיים כבר.\nעל הסיסמא להיות באורך 8 תווים לפחות, ולהכיל תו מיוחד.');
         }
     };
+
+    $scope.removeUser = function (username) {
+        var isConfirm = confirm('האם אתה בטוח שברצונך למחוק את המשתמש?');
+        if (isConfirm) {
+            $http.get('admin/userManagement/deleteUser?username=' + username).then(function(response) {
+                if (response.status == 200) {
+                    alert('המשתמש נמחק בהצלחה!');
+                    location.reload();
+                }
+            }, function(error) {
+                alert('ארעה שגיאה, והמשתמש לא נמחק.');
+            });
+        }
+    };
 }]);
