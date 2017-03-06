@@ -7,10 +7,10 @@ app.controller('changePassword', ['$scope', '$http', function ($scope, $http) {
     $scope.newUserPassword = '';
     $scope.newUserType = 'DOWNLOAD';
     $scope.userTypes = ['DOWNLOAD', 'UPLOAD', 'ADMIN'];
-    $scope.usernames = [];
+    $scope.users = [];
     $http.get('/admin/userManagement').then(function(response) {
         if (response.status == 200) {
-            $scope.usernames = response.data;
+            $scope.users = response.data;
         }
     });
 
@@ -24,7 +24,7 @@ app.controller('changePassword', ['$scope', '$http', function ($scope, $http) {
         }
         var specialCharacters = /^((?![\\/:?\"<>\|`~!@%&$^*\(\)\{\}\[\]\-_+=;'.,]).)*$/i; // Doesn't contain any special characters
         var capitalLetters = /^((?![A-Z]).)*$/i; // Doesn't contain any special characters
-        var isExists = $scope.usernames.indexOf(name) !== -1;
+        var isExists = $scope.users.map(user => user.name).indexOf(name) !== -1;
         var isValidPassword = password.length >= 8 &&
                 !specialCharacters.test(password) &&
                 !capitalLetters.test(password) &&

@@ -24,7 +24,13 @@ function getAllUserNames(req, res) {
         api.getAllUsers()
             .then((documents) => {
                 logger.debug('Served all users names.');
-                res.status(200).json(documents.map(doc => doc.name));
+                res.status(200).json(documents.map(doc => {
+                    return {
+                        name: doc.name,
+                        type: doc.type,
+                        numberOfEntries: doc.numberOfEntries
+                    };
+                }));
             }).fail((error) => {
             logger.error('Error while serving all user names. Error: ' + JSON.stringify(error));
             res.sendStatus(500);
@@ -64,7 +70,7 @@ function changePassword(req, res) {
 function createUser(req, res) {
     const cookie = req.cookies.password;
     let {username, password, type} = req.query;
-    if (type !== 'UPLOAD' || type !== 'ADMIN')
+    if (type !== 'UPLOAD' && type !== 'ADMIN')
         type = 'DOWNLOAD';
     if (cookie == adminCookie) {
         if (!passwordValidator(password)) {

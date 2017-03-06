@@ -4,8 +4,8 @@
         <div class="row container-fluid">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="list-group my-username-group">
-                    <a class="list-group-item" ng-repeat="username in usernames track by $index">
-                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">{{username}}</span>
+                    <a class="list-group-item" ng-repeat="user in users track by $index">
+                        <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">{{user.name}}</span>
                         <span class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="margin-left: 1em; margin-right: 2em;">
                             <span class="input-group" ng-show="true">
                                 <input class="form-control col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" placeholder="סיסמא חדשה">
@@ -14,7 +14,7 @@
                                 </span>
                             </span>
                         </span>
-                        <button class="btn btn-sm btn-danger" ng-click="removeUser(username)"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button class="btn btn-sm btn-danger" ng-click="removeUser(user.name)"><span class="glyphicon glyphicon-remove"></span></button>
                     </a>
                 </div>
             </div>
