@@ -49,7 +49,7 @@ app.controller('changePassword', ['$scope', '$http', function ($scope, $http) {
             $http.get('admin/userManagement/deleteUser?username=' + username).then(function(response) {
                 if (response.status == 200) {
                     alert('המשתמש נמחק בהצלחה!');
-                    location.reload();
+                    $scope.users = $scope.users.filter(user => user.name !== username);
                 }
             }, function(error) {
                 alert('ארעה שגיאה, והמשתמש לא נמחק.');
