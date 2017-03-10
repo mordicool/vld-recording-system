@@ -11,9 +11,9 @@
                         <hr/>
                         <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="margin-left: 1em; margin-right: 2em;">
                             <span class="input-group" ng-show="true">
-                                <input class="form-control col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" placeholder="סיסמא חדשה">
+                                <input class="form-control col-xs-8 col-sm-8 col-md-8 col-lg-8" type="password" placeholder="סיסמא חדשה" ng-attr-id="{{'newPassword' + user.name}}" ng-keyup="$event.keyCode == 13 && Login()">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></button>
+                                    <button class="btn btn-default" ng-click="editPassword(user.name)"><span class="glyphicon glyphicon-edit"></span></button>
                                 </span>
                             </span>
                         </span>
