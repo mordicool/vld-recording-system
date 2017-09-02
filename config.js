@@ -38,10 +38,10 @@ var config = {
         currentYear: '5777'
     },
     amazonModule: {
-        applyModule: true,
-        bucketName: 'vld-test',
-        accessKeyId: 'AKIAJ4E7K3T5QBMAAPBQ',
-        secretAccessKey: '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',
+        applyModule: false,
+        bucketName: '***',
+        accessKeyId: '***',
+        secretAccessKey: '***',
         region: 'eu-central-1',
         prefix: '5777/'
     },
