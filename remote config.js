@@ -9,20 +9,23 @@ var config = {
     authentication: {
         UPLOAD: {
             cookieValue: 'U7+LUL@?{zeW"e=n',
-            cookieMaxAge: 100000 * 60 * 1000 // 100000 minutes
+            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
         DOWNLOAD: {
             cookieValue: '=A3ragUpe*Ej',
-            cookieMaxAge: 100000 * 60 * 1000 // 100000 minutes
+            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
         },
         ADMIN: {
             cookieValue: '2]Q%u_r<8DpbE]Fb',
-            cookieMaxAge: 100000 * 60 * 1000 // 100000 minutes
+            cookieMaxAge: 20 * 60 * 1000 // 20 minutes
         }
     },
     db: {
-        host: 'localhost:27017',
-        dbName: 'local'
+        user: 'aacc45e82c9385cbeb60aeb83be1f9a8',
+        password: 'wEinbi0m',
+        host: '32-1a.mongo.evennode.com:27017,32-1b.mongo.evennode.com:27017',
+        dbName: 'aacc45e82c9385cbeb60aeb83be1f9a8',
+        replicaSet: 'eusbg1'
     },
     uploadsFolder: 'uploads/',
     downloadsFolder: 'downloads/',
@@ -40,8 +43,8 @@ var config = {
     amazonModule: {
         applyModule: true,
         bucketName: 'vld-test',
-        accessKeyId: 'AKIAJ4E7K3T5QBMAAPBQ',
-        secretAccessKey: '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',
+        accessKeyId: 'AKIAJZF3ILQX7BDJTBOQ',
+        secretAccessKey: '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',
         region: 'eu-central-1',
         prefix: '5777/'
     },
@@ -50,6 +53,9 @@ var config = {
     }
 };
 
-config.db.url = 'mongodb://' + config.db.host + '/' + config.db.dbName;
+config.db.url = 'mongodb://' +
+    config.db.user + ':' + config.db.password + '@' +
+    config.db.host + '/' + config.db.dbName +
+    '?replicaSet=' + config.db.replicaSet;
 
 module.exports = config;

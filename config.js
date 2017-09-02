@@ -9,23 +9,20 @@ var config = {
     authentication: {
         UPLOAD: {
             cookieValue: 'U7+LUL@?{zeW"e=n',
-            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
+            cookieMaxAge: 100000 * 60 * 1000 // 100000 minutes
         },
         DOWNLOAD: {
             cookieValue: '=A3ragUpe*Ej',
-            cookieMaxAge: 10 * 60 * 1000 // 10 minutes
+            cookieMaxAge: 100000 * 60 * 1000 // 100000 minutes
         },
         ADMIN: {
             cookieValue: '2]Q%u_r<8DpbE]Fb',
-            cookieMaxAge: 20 * 60 * 1000 // 20 minutes
+            cookieMaxAge: 100000 * 60 * 1000 // 100000 minutes
         }
     },
     db: {
-        user: 'aacc45e82c9385cbeb60aeb83be1f9a8',
-        password: 'wEinbi0m',
-        host: '32-1a.mongo.evennode.com:27017,32-1b.mongo.evennode.com:27017',
-        dbName: 'aacc45e82c9385cbeb60aeb83be1f9a8',
-        replicaSet: 'eusbg1'
+        host: 'localhost:27017',
+        dbName: 'local'
     },
     uploadsFolder: 'uploads/',
     downloadsFolder: 'downloads/',
@@ -53,9 +50,6 @@ var config = {
     }
 };
 
-config.db.url = 'mongodb://' +
-    config.db.user + ':' + config.db.password + '@' +
-    config.db.host + '/' + config.db.dbName +
-    '?replicaSet=' + config.db.replicaSet;
+config.db.url = 'mongodb://' + config.db.host + '/' + config.db.dbName;
 
 module.exports = config;
